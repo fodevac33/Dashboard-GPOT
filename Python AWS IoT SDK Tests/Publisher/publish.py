@@ -2,6 +2,7 @@ from connect import credentials, client_id, mqtt_connection
 from datetime import datetime
 from awscrt import mqtt
 import random, json, time
+
 while True:
     now = datetime.now()
 

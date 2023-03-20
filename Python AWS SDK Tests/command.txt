@@ -1,1 +1,0 @@
-python playground.py --ep adue630rr4m5j-ats.iot.us-east-1.amazonaws.com --pubcert certs/device.pem.crt --pvtkey certs/private.pem.key --cacert certs/Amazon-root-CA-1.pem --topic test/topic
