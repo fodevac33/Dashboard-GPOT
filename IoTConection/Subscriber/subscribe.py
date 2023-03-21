@@ -1,9 +1,19 @@
 from connect import credentials, mqtt_connection
 from awscrt import mqtt
-import threading
+from pymongo import MongoClient
+import threading, json
+
+client = MongoClient('mongodb://admin:admin@54.85.148.227:27017/database')
+
+db = client['database']
+
+collection = db['voltage']
 
 def on_message_received(topic, payload, dup, qos, retain, **kwargs):
-    print("Received message from topic '{}': {}".format(topic, payload))
+    data = json.loads(payload.decode("utf-8"))
+    collection.insert_one(data)
+    print("Received message from topic '{}': {}".format(topic, data))
+
 
 subscribe_future, packet_id = mqtt_connection.subscribe(
     topic=credentials["topic"],
