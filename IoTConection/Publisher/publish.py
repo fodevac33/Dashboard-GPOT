@@ -1,21 +1,23 @@
 from connect import credentials, client_id, mqtt_connection
-from datetime import datetime
 from awscrt import mqtt
 import random, json, time
 
+num = 0
+
 while True:
-    now = datetime.now()
 
-    voltage = random.randrange(5, 10) +  random.random()
+    voltage = random.randrange(8, 10) +  random.random()
 
-    message = f'id: {client_id}, voltage: {voltage}, time: {now}'
+    message = f'{{"time": {num}, "valor": {voltage}}}'
 
     mqtt_connection.publish(
         topic=credentials["topic"],
-        payload= json.dumps(message),
+        payload=message,
         qos=mqtt.QoS.AT_LEAST_ONCE
     )
 
     print(f'Message published: {message}')
 
-    time.sleep(1)
+    num += 1
+
+    time.sleep(2)
