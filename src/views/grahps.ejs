@@ -5,32 +5,57 @@
   <meta charset="UTF-8" />
   <title>title</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
 
   <canvas id="graph" width="800" height="500"></canvas>
   <script>
-    const arrayTime = JSON.parse('<%- JSON.stringify(arrayTime) %>');
-    const arrayVoltage = JSON.parse('<%- JSON.stringify(arrayVoltage) %>');
-    chart();
-    setInterval(chart, 2000)
+    const socket = io();
 
-    async function chart() {
-      const ctx = document.getElementById('graph');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
+    let chart;
+    socket.on('data', (data) => {
+      const arrayTime = data.arrayVoltage;
+      const arrayVoltage = data.arrayTime;
+
+      if (!chart) {
+
+        const datachart = {
           labels: arrayTime,
           datasets: [{
             label: 'Voltage',
             data: arrayVoltage,
             borderWidth: 1
           }]
-        },
-      });
-    }
-    console.log('data deploy')
+        }
+
+        const config = {
+          type: 'line',
+          data: datachart,
+          options: {}
+        };
+
+        async function initchart() {
+          const ctx = document.getElementById('graph');
+          chart = new Chart(ctx,
+            config);
+        }
+
+        initchart();
+      } else {
+
+        chart.data.labels.push(arrayTime.slice(-1)[0]);
+        chart.data.labels.shift();
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(arrayVoltage.slice(-1)[0]);
+          dataset.data.shift();
+        });
+        chart.update();
+      }
+
+
+    });
   </script>
 
   <h1>Graficas en tiempo Real</h1>
