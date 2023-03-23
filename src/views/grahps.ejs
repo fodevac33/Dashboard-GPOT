@@ -7,70 +7,204 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="/socket.io/socket.io.js"></script>
 </head>
+<style>
+  .chartBox {
+    width: 700px !important;
+    height: 500px !important;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .chartContainer {
+    white-space: nowrap;
+  }
+</style>
 
 <body>
+  <div class="chartContainer">
+    <div class="chartBox">
+      <canvas id="graphVoltage"></canvas>
+    </div>
+    <div class="chartBox">
+      <canvas id="graphCurrent"></canvas>
+    </div>
+  </div>
 
-  <canvas id="graph" width="800" height="500"></canvas>
   <script>
+
     const socket = io();
-
-    let chart;
+    let chartC;
+    let chartV;
     socket.on('data', (data) => {
-      const arrayTime = data.arrayVoltage;
-      const arrayVoltage = data.arrayTime;
+      const arrayTime = data.arrayTime;
+      const arrayVoltage = data.arrayVoltage;
+      const arrayCurrent = data.arrayCurrent;
+      const arrayTimeC = data.arrayTimeC;
 
-      if (!chart) {
-
-        const datachart = {
+      //setup
+      if (!chartC &  !chartV) {
+        const datachartVoltage = {
           labels: arrayTime,
+          font: {
+            size: 14,
+            color: '#F8F9F9'
+          },
           datasets: [{
             label: 'Voltage',
             data: arrayVoltage,
-            borderWidth: 1
+            backgroundColor: '#F39C12',
+            borderColor: '#F39C12',
+            borderWidth: 3
+
           }]
         }
 
-        const config = {
+        const datachartCurrent = {
+          labels: arrayTimeC,
+          font: {
+            size: 14,
+            color: '#5B2C6F'
+          },
+          datasets: [{
+            label: 'Current',
+            data: arrayCurrent,
+            backgroundColor: '#5B2C6F',
+            borderColor: '#5B2C6F',
+            borderWidth: 3
+
+          }]
+        }
+        //plugin
+        const plugin = {
+          id: 'customCanvasBackgroundColor',
+          beforeDraw: (chart, args, options) => {
+            const { ctx } = chart;
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = options.color || '#99ffff';
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+          }
+        };
+
+        
+
+        //config
+
+        const configVoltage = {
           type: 'line',
-          data: datachart,
-          options: {}
+          data: datachartVoltage,
+          options: {
+            animation: {
+              duration: 0
+            },
+            plugins: {
+              customCanvasBackgroundColor: {
+                color: '#17202A',
+              },
+              title: {
+                display: true,
+                text: 'Grafica en tiempo real voltaje',
+                color: '#F8F9F9'
+              },
+              legend: {
+                labels: {
+                  font: {
+                    size: 20,
+                    color: "#F8F9F9"
+                  }
+                }
+              },
+              scales: {
+                xAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }],
+                yAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }]
+              }, responsive: false,
+            }
+          },
+          plugins: [plugin],
+        };
+
+        const configCurrent = {
+          type: 'line',
+          data: datachartCurrent,
+          options: {
+            plugins: {
+              customCanvasBackgroundColor: {
+                color: '#17202A',
+              },
+              title: {
+                display: true,
+                text: 'Grafica en tiempo real corriente',
+                color: '#F8F9F9'
+              },
+              legend: {
+                labels: {
+                  font: {
+                    size: 20,
+                    color: "#F8F9F9"
+                  }
+                }
+              },
+              scales: {
+                xAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }],
+                yAxes: [{
+                  ticks: {
+                    fontColor: 'white'
+                  }
+                }]
+              }, responsive: false,
+            }
+          },plugins: [plugin],
         };
 
         async function initchart() {
-          const ctx = document.getElementById('graph');
-          chart = new Chart(ctx,
-            config);
+
+          
+
+          //render
+          const ctx = document.getElementById('graphVoltage');
+          chartV = new Chart(ctx,
+            configVoltage);
+
+          const cc = document.getElementById('graphCurrent');
+          chartC = new Chart(cc,configCurrent);
+
+          
         }
 
         initchart();
       } else {
 
-        chart.data.labels.push(arrayTime.slice(-1)[0]);
-        chart.data.labels.shift();
-        chart.data.datasets.forEach((dataset) => {
+        chartV.data.labels.push(arrayTime.slice(-1)[0]);
+        chartV.data.labels.shift();
+        chartV.data.datasets.forEach((dataset) => {
           dataset.data.push(arrayVoltage.slice(-1)[0]);
           dataset.data.shift();
         });
-        chart.update();
+        chartV.update();
+        chartC.data.labels.push(arrayTime.slice(-1)[0]);
+        chartC.data.labels.shift();
+        chartC.data.datasets.forEach((dataset) => {
+          dataset.data.push(arrayCurrent.slice(-1)[0]);
+          dataset.data.shift();
+        });
+        chartC.update();
       }
 
 
     });
   </script>
-
-  <h1>Graficas en tiempo Real</h1>
-
-  <div id="labelAccel" class="label">
-    <h2> Voltage </h2>
-  </div>
-
-  <div id="accelContainer" class="container">
-
-    <div id="xAccel" class="x">
-
-      <canvas id="ctx"></canvas>
-    </div>
-
 </body>
 
 </html>
