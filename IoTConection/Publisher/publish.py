@@ -6,9 +6,20 @@ num = 0
 
 while True:
 
-    voltage = random.randrange(8, 10) +  random.random()
+    voltage = round(5 + random.gauss(0.0, 0.5), 3)
+    current = round(5 + random.gauss(0.0, 0.5), 3)
 
-    message = f'{{"time": {num}, "valor": {voltage}}}'
+    # message = f'{{"time": {num}, "voltage": {voltage}, "current": {current}}}'
+    message = json.dumps({
+        "voltage":{
+            "time": num, 
+            "voltage": voltage
+            }, 
+        "current":{ 
+            "time": num, 
+            "current": current}
+        }
+    )
 
     mqtt_connection.publish(
         topic=credentials["topic"],
@@ -18,6 +29,6 @@ while True:
 
     print(f'Message published: {message}')
 
-    num += 1
+    num += 1 
 
-    time.sleep(2)
+    time.sleep(0.2)
