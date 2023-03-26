@@ -1,18 +1,17 @@
 import express, {Express, Request, Response} from "express";
+import ejs from "ejs";
+import http from "http";
+import {MongoClient} from "mongodb";
+import {Server} from "socket.io"
+
 
 const app: Express = express()
 
-const port = 8000;
+const io = new Server(server);
+
+io.listen(3000);
+
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hi from TypeScript");
-});
-
-app.get("/hi", (req: Request, res: Response) => {
-    res.send("dev task working");
-});
-
-
-app.listen(port, () => {
-    console.log(`Now Listening on port ${port}`);
 });
