@@ -1,9 +1,11 @@
 const { MongoClient } = require("mongodb");
 const express = require("express");
-const app = express();
 const ejs = require("ejs");
-const http = require("http").createServer(app);
 const { Server } = require("socket.io");
+
+
+const app = express();
+const http = require("http").createServer(app);
 const io = new Server(http);
 
 app.set("view engine", "ejs");
@@ -46,7 +48,7 @@ async function connect() {
   }, 200);
 }
 
-http.listen(5500, () => console.log("Server running on port 5500"));
+http.listen(5050, () => console.log("Server running on port 5500"));
 
 async function listByName(client, collection) {
   const projectionObj = { [collection]: 1, time: 1 };
