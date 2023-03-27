@@ -1,9 +1,7 @@
 import express, {Express, Request, Response} from "express";
-import ejs from "ejs";
 import {createServer} from "http";
 import {MongoClient} from "mongodb";
 import {Server} from "socket.io"
-
 
 const app: Express = express();
 
@@ -20,7 +18,7 @@ const client = new MongoClient(uri);
 app.set("view engine", "ejs");
 
 app.get("/", (req: Request, res: Response) => {
-    res.render("grahps.ejs");
+    res.render("test.ejs");
 });
 
 server.listen(5500, () => console.log("Server running on port 5500"));

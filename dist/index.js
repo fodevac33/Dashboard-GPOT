@@ -13,7 +13,7 @@ const client = new MongoClient(uri);
 //Configuracion de la app en express
 app.set("view engine", "ejs");
 app.get("/", (req, res) => {
-    res.render("grahps.ejs");
+    res.render("test.ejs");
 });
 server.listen(5500, () => console.log("Server running on port 5500"));
 //# sourceMappingURL=index.js.map
