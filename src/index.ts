@@ -2,6 +2,7 @@ import express, {Express, Request, Response} from "express";
 import {createServer} from "http";
 import {MongoClient} from "mongodb";
 import {Server} from "socket.io"
+import ejs from "ejs"
 
 const app: Express = express();
 
@@ -15,15 +16,17 @@ const uri = `mongodb://admin:admin@${ec2_ip}:27017/database`;
 const client = new MongoClient(uri);
 
 //Configuracion de la app en express
-app.set("view engine", "ejs");
+app.engine("html", ejs.renderFile);
+
+app.set("view engine", "html");
 
 app.get("/", (req: Request, res: Response) => {
-    res.render("test.ejs");
+    res.render("grahps.html");
 });
+
 
 server.listen(5500, () => console.log("Server running on port 5500"));
 
-/*
 
 
 //Tiempo de actalizacion
@@ -103,5 +106,5 @@ async function deleteArray(client: MongoClient, collection: Collections, arrayTi
 }
 
 
-*/ 
+
 //# sourceMappingURL=index.js.map
