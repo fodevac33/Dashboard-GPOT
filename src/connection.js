@@ -14,7 +14,8 @@ app.get("/", (req, res) => {
   res.render("grahps.ejs");
 });
 
-const uri = "mongodb://admin:admin@54.85.148.227:27017/database";
+const ec2_ip = "54.147.157.47"
+const uri = `mongodb://admin:admin@${ec2_ip}:27017/database`;
 const client = new MongoClient(uri);
 
 connect();
@@ -48,7 +49,7 @@ async function connect() {
   }, 200);
 }
 
-http.listen(5050, () => console.log("Server running on port 5500"));
+http.listen(5500, () => console.log("Server running on port 5500"));
 
 async function listByName(client, collection) {
   const projectionObj = { [collection]: 1, time: 1 };
