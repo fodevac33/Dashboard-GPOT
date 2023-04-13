@@ -11,10 +11,10 @@ const io = new Server(http);
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("grahps.ejs");
+  res.render("test.ejs");
 });
 
-const ec2_ip = "54.147.157.47"
+const ec2_ip = "44.202.248.190"
 const uri = `mongodb://admin:admin@${ec2_ip}:27017/database`;
 const client = new MongoClient(uri);
 
