@@ -5,10 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-import kpiRoutes from "./routes/kpi.js";
-import KPI from "./models/KPI.js";
-import { kpis } from "./data/data.js";
-import AQVoltage from "./models/AQvoltage.js";
+import AQVoltage from "./models/AQVoltage.js";
 import aqvoltageRoutes from "./routes/aqvoltage.js";
 
 /* CONFIGURATIONS */
@@ -23,7 +20,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 /* Routes*/
-app.use("/kpi", kpiRoutes);
 app.use("/aqvoltage", aqvoltageRoutes);
 
 /* MONGOOSE SETUP */

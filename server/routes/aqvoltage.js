@@ -1,5 +1,5 @@
 import  express from "express";
-import AQVoltage from "../models/AQvoltage.js";
+import AQVoltage from "../models/AQVoltage.js";
 
 const router = express.Router();
 
