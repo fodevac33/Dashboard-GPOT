@@ -68,7 +68,6 @@ const Row1 = (props: Props) => {
     <DashboardBox gridArea="c">
     <BoxHeader
             title="Voltaje ACU Tiempo Real"
-            subtitle="Este grafica muestra en tiempo real el voltaje registrado por el ACU"
             sideText="Volts"
           />
     <ResponsiveContainer width="100%" height="100%">
