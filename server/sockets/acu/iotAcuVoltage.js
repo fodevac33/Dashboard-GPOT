@@ -10,9 +10,9 @@ let arrayDataRealTime = [];
 
 
 const device = awsIot.device({
-  keyPath: path.resolve(__dirname, "../IoTConection/Subscriber/certs/private.pem.key"),
-  certPath: path.resolve(__dirname, "../IoTConection/Subscriber/certs/device.pem.crt"),
-  caPath: path.resolve(__dirname, "../IoTConection/Subscriber/certs/AmazonRootCA1.pem"),
+  keyPath: path.resolve(__dirname, "../../../IoTConection/Subscriber/certs/private.pem.key"),
+  certPath: path.resolve(__dirname, "../../../IoTConection/Subscriber/certs/device.pem.crt"),
+  caPath: path.resolve(__dirname, "../../../IoTConection/Subscriber/certs/AmazonRootCA1.pem"),
   clientId: "JS-Subscriber",
   host: "adue630rr4m5j-ats.iot.us-east-1.amazonaws.com",
 });
