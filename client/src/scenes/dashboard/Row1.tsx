@@ -83,7 +83,7 @@ const Row1 = (props: Props) => {
           <YAxis/>
           <Tooltip/>
           <Legend />
-          <Line type="monotone" dataKey="voltage" stroke="#8884d8" dot={false}/>
+          <Line type="monotone" isAnimationActive={false} dataKey="voltage" stroke="#8884d8" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>

@@ -36,6 +36,9 @@ function socketController(server) {
       device.on("message", function (topic, payload) {
         console.log("Message received:", topic, payload.toString());
         const dataRealTime = JSON.parse(payload.toString());
+        if(arrayDataRealTime.length > 100){
+            arrayDataRealTime.shift();
+        }
         arrayDataRealTime.push(dataRealTime["voltage"]);
         io.emit("dataRealTime", arrayDataRealTime);
     });
