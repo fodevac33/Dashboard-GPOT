@@ -5,16 +5,14 @@ import Row3 from './Row3';
 
 
 const gridTemplateLargeScreens = `
-  "a b c"
-  "a b c"
-  "a b c"
-  "a b f"
-  "d e f"
-  "d e f"
-  "d h i"
-  "g h i"
-  "g h j"
-  "g h j"
+  "a b"
+  "a b"
+  "a b"
+  "a b"
+  "c c"
+  "c c"
+  "c c"
+  "c c"
 `;
 
 const gridTemplateSmallScreens= `
@@ -26,29 +24,13 @@ const gridTemplateSmallScreens= `
   "b"
   "b"
   "b"
+  "b"
   "c"
   "c"
   "c"
-  "d"
-  "d"
-  "d"
-  "e"
-  "e"
-  "f"
-  "f"
-  "f"
-  "g"
-  "g"
-  "g"
-  "h"
-  "h"
-  "h"
-  "h"
-  "i"
-  "i"
-  "j"
-  "j"
+  "c"
 `;
+
 const Dashboard = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
     return (
@@ -59,13 +41,14 @@ const Dashboard = () => {
         gap="1.5rem"
         sx = {
           isAboveMediumScreens ?{
-          gridTemplateColumns: "repeat(3, minmax(370px, 1fr))",
+          gridTemplateColumns: "repeat(2, minmax(370px, 1fr))",
           gridTemplateRows: "repeat(10, minmax(60px, 1fr))",
           gridTemplateAreas: gridTemplateLargeScreens,
           } : {
             gridAutoColumns: "1fr",
             gridAutoRows: "80px",
             gridTemplateAreas: gridTemplateSmallScreens,
+            maxWidth: "90px",
           }
         }
       >

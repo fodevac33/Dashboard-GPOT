@@ -12,17 +12,19 @@ import  Dashboard from "@/scenes/dashboard";
 function App() {
   const theme = useMemo(() => createTheme(themeSettings), []);
   return (
-  <div className="app">
+  <div className="app"style={{ display: "flex", height: "100%" }}>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem">
-        <Navbar/>
+        <Box width="100%"  padding="2rem 2rem" style={{ flex: 0.5 }}>
+          <Navbar/>
+        </Box>
+        <Box width="100%" padding="1rem 2rem 4rem 2rem" style={{ flex: 4 }}>
           <Routes>  
             <Route path="/" element={<Dashboard/>} />
             <Route path="/predictions" element={<div> predicitions page</div>} />
           </Routes>
-        </Box>
+        </Box>  
       </ThemeProvider>
     </BrowserRouter>
   </div>

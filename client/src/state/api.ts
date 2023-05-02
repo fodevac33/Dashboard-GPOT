@@ -1,17 +1,17 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import { GetAQVoltageResponse} from "./types";
+import { GetAcuVoltageResponse} from "./types";
 
 export const api = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
     reducerPath: "main",
-    tagTypes: ["AQVoltages"],
+    tagTypes: ["AcuVoltages"],
     endpoints: (build) => ({
-        getAQVoltages: build.query<Array<GetAQVoltageResponse>,void>({
-            query: ()=> "aqvoltage/aqvoltages",
-            providesTags: ["AQVoltages"],
+        getAcuVoltages: build.query<Array<GetAcuVoltageResponse>,void>({
+            query: ()=> "acuvoltage/acuvoltages",
+            providesTags: ["AcuVoltages"],
         }),
     }),
 });
 
 
-export const {useGetAQVoltagesQuery} = api;
+export const {useGetAcuVoltagesQuery} = api;

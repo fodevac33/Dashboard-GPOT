@@ -12,37 +12,39 @@ const Navbar = (props: Props) => {
   return( 
     <FlexBetween mb="0.25rem" p="0.5rem 0rem" color={palette.grey[300]}>
         {/* Left Side */}
-        <FlexBetween gap= "0.75rem">
-            <SolarPowerIcon sx={{ fontSize: "28px"}}/>
-            <Typography variant="h4" fontSize="16px">
-                GPOT
-            </Typography>
-        </FlexBetween>
+            <FlexBetween gap= "0.75rem">
+                <Box sx={{ display: "inline-flex", alignItems: "center" }}>
+                    <SolarPowerIcon sx={{ fontSize: "30px"}}/>
+                    <Typography variant="h4" sx={{ fontSize: "30px", marginLeft: "10px" }}>
+                        GPOT
+                    </Typography>
+                </Box>
+            </FlexBetween>
 
-        {/* Rigth Side */}
-        <FlexBetween gap="2rem">
-            <Box sx={{"&:hover": {color: palette.primary[100]}}}></Box>
-            <Link 
-                to="/"
-                onClick={() => setSelected("dashboard")} 
-                style={{ 
-                    color: selected ==="dashboard" ? "inherit": palette.grey[700],
-                     textDecoration: "inherit",}}> 
-            Dashboard         
-            </Link>
-           
-            <Box>
-            <Link 
-                to="/predictions"
-                onClick={() => setSelected("predictions")} 
-                style={{ 
-                    color: selected ==="predictions" ? "inherit": palette.grey[700],
-                     textDecoration: "inherit",}}> 
-            Predictions
-            </Link>
+            {/* Rigth Side */}
+            <FlexBetween gap="2rem" p="0rem 1.2rem">
+                <Box sx={{"&:hover": {color: palette.primary[100]}}}></Box>
+                <Link 
+                    to="/"
+                    onClick={() => setSelected("dashboard")} 
+                    style={{ 
+                        color: selected ==="dashboard" ? "inherit": palette.grey[700],
+                        textDecoration: "inherit",}}> 
+                Dashboard         
+                </Link>
             
-            </Box>
-        </FlexBetween>
+                <Box>
+                <Link 
+                    to="/predictions"
+                    onClick={() => setSelected("predictions")} 
+                    style={{ 
+                        color: selected ==="predictions" ? "inherit": palette.grey[700],
+                        textDecoration: "inherit",}}> 
+                Predictions
+                </Link>
+                
+                </Box>
+            </FlexBetween>
     </FlexBetween>
   );
 };
