@@ -18,5 +18,5 @@ const voltageSchema = new Schema(
 );
 
 
-const AQVoltage = mongoose.model("AQ", voltageSchema,"voltage");
-export default AQVoltage
+const AcuVoltage = mongoose.model("AcuVoltage", voltageSchema,"voltage");
+export default AcuVoltage
