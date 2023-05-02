@@ -66,6 +66,11 @@ const Row1 = (props: Props) => {
 
     
     <DashboardBox gridArea="c">
+    <BoxHeader
+            title="Voltaje ACU Tiempo Real"
+            subtitle="Este grafica muestra en tiempo real el voltaje registrado por el ACU"
+            sideText="Volts"
+          />
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
@@ -75,14 +80,13 @@ const Row1 = (props: Props) => {
             top: 20,
             right: 20,
             left: -25,
-            bottom: 0,
+            bottom: 50,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Legend />
           <Line type="monotone" isAnimationActive={false} dataKey="voltage" stroke="#8884d8" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
