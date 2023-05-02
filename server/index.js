@@ -8,7 +8,6 @@ import morgan from "morgan";
 import acuvoltageRoutes from "./routes/acu/acuvoltage.js";
 import { createServer } from "http";
 import socketController from "./iot.js";
-
 /* CONFIGURATIONS */
 dotenv.config();
 const app = express();

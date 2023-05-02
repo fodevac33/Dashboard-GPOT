@@ -6,8 +6,9 @@ function socketController(server) {
   io.on("connection", (socket) => {
     setInterval(async () => {
       const dataRealTime = await AcuVoltage.find({});
+      console.log(dataRealTime);
       io.emit("dataRealTime", dataRealTime);
-    }, 200);
+    }, 2000);
   });
 }
 

@@ -6,7 +6,7 @@ import { Server } from "socket.io";
 
 //
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
+let arrayDataRealTime = [];
 
 
 const device = awsIot.device({
@@ -35,8 +35,9 @@ function socketController(server) {
     io.on("connection", (socket) => {
       device.on("message", function (topic, payload) {
         console.log("Message received:", topic, payload.toString());
-        let dataRealTime = JSON.parse(payload.toString());
-        io.emit("dataRealTime", dataRealTime);
+        const dataRealTime = JSON.parse(payload.toString());
+        arrayDataRealTime.push(dataRealTime["voltage"]);
+        io.emit("dataRealTime", arrayDataRealTime);
     });
   });
 };
