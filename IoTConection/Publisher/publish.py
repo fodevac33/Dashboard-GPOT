@@ -17,7 +17,8 @@ while True:
             }, 
         "current":{ 
             "time": num, 
-            "current": current}
+            "current": current
+            }
         }
     )
 

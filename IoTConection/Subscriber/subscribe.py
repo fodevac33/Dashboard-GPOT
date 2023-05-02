@@ -3,7 +3,7 @@ from awscrt import mqtt
 from pymongo import MongoClient
 import threading, json
 
-client = MongoClient('mongodb://admin:admin@50.16.94.93:27017/database')
+client = MongoClient('mongodb://admin:admin@44.202.248.190:27017/database')
 
 db = client['database']
 
