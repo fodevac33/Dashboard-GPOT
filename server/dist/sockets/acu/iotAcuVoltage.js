@@ -1,26 +1,15 @@
-import path from "path";
-import awsIot from "aws-iot-device-sdk";
-import { fileURLToPath } from "url";
 import { Server } from "socket.io";
-//
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import acu from "../../devices/acu/AcuDevice.js";
 let arrayDataRealTime = [];
-const device = awsIot.device({
-    keyPath: path.resolve(__dirname, "../../../../IoTConection/Subscriber/certs/private.pem.key"),
-    certPath: path.resolve(__dirname, "../../../../IoTConection/Subscriber/certs/device.pem.crt"),
-    caPath: path.resolve(__dirname, "../../../../IoTConection/Subscriber/certs/AmazonRootCA1.pem"),
-    clientId: "JS-Subscriber",
-    host: "adue630rr4m5j-ats.iot.us-east-1.amazonaws.com",
-});
-device.on("connect", function () {
+acu.on("connect", function () {
     console.log("Connected to AWS IoT");
-    device.subscribe("DC_DATA");
+    acu.subscribe("DC_DATA");
 });
 function socketController(server) {
     const io = new Server(server);
     io.on("connection", (socket) => {
-        device.on("message", function (topic, payload) {
-            console.log("Message received:", topic, payload.toString());
+        acu.on("message", function (topic, payload) {
+            console.log("Message received:", topic);
             const dataRealTime = JSON.parse(payload.toString());
             if (arrayDataRealTime.length > 100) {
                 arrayDataRealTime.shift();
