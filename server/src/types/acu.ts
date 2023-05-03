@@ -13,4 +13,8 @@ interface AcuData {
   current: Current;
 }
 
-export { AcuData, Voltage, Current };
+enum Topics {
+  DC_DATA = "DC_DATA",
+}
+
+export { AcuData, Voltage, Current, Topics };
