@@ -5,7 +5,7 @@ acu.on("connect", function () {
     console.log("Connected to AWS IoT");
     acu.subscribe("DC_DATA");
 });
-function socketControllerVoltage(server) {
+function socketControllerCurrent(server) {
     const io = new Server(server);
     io.on("connection", (socket) => {
         acu.on("message", function (topic, payload) {
@@ -14,10 +14,10 @@ function socketControllerVoltage(server) {
             if (arrayDataRealTime.length > 100) {
                 arrayDataRealTime.shift();
             }
-            arrayDataRealTime.push(dataRealTime.voltage);
+            arrayDataRealTime.push(dataRealTime.current);
             io.emit("dataRealTime", arrayDataRealTime);
         });
     });
 }
-export default socketControllerVoltage;
-//# sourceMappingURL=iotAcuVoltage.js.map
+export default socketControllerCurrent;
+//# sourceMappingURL=iotAcuCurrent.js.map

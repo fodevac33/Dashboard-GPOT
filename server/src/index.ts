@@ -7,7 +7,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import acuvoltageRoutes from "./routes/acu/acuvoltage.js";
 import { createServer } from "http";
-import socketController from "./sockets/acu/iotAcuVoltage.js";
+import socketControllerVoltage from "./sockets/acu/iotAcuVoltage.js";
+import socketControllerCurrent from "./sockets/acu/iotAcuCurrent.js";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -30,6 +31,7 @@ mongoose
   .connect(process.env.MONGO_URL, {})
   .then(async () => {
     http.listen(PORT, () => console.log(`Server Port: ${PORT}`));
-    socketController(http);
+    socketControllerVoltage(http);
+    socketControllerCurrent(http);
   })
   .catch((error) => console.log(`${error} did not connect`));

@@ -1,16 +1,16 @@
 import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
-import { Voltage, AcuData } from "../../types/acu.js";
+import { Current, AcuData } from "../../types/acu.js";
 import http from "http";
 
-let arrayDataRealTime: Voltage[] = [];
+let arrayDataRealTime: Current[] = [];
 
 acu.on("connect", function () {
   console.log("Connected to AWS IoT");
   acu.subscribe("DC_DATA");
 });
 
-function socketControllerVoltage(server: http.Server) {
+function socketControllerCurrent(server: http.Server) {
   const io = new Server(server);
 
   io.on("connection", (socket) => {
@@ -21,10 +21,10 @@ function socketControllerVoltage(server: http.Server) {
       if (arrayDataRealTime.length > 100) {
         arrayDataRealTime.shift();
       }
-      arrayDataRealTime.push(dataRealTime.voltage);
+      arrayDataRealTime.push(dataRealTime.current);
       io.emit("dataRealTime", arrayDataRealTime);
     });
   });
 }
 
-export default socketControllerVoltage;
+export default socketControllerCurrent;
