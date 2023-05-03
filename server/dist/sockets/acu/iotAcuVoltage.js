@@ -14,7 +14,7 @@ function socketController(server) {
             if (arrayDataRealTime.length > 100) {
                 arrayDataRealTime.shift();
             }
-            arrayDataRealTime.push(dataRealTime["voltage"]);
+            arrayDataRealTime.push(dataRealTime.voltage);
             io.emit("dataRealTime", arrayDataRealTime);
         });
     });

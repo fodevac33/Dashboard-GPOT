@@ -7,7 +7,9 @@ router.get("/acuvoltages", async (req, res) => {
         res.status(200).json(AcuVoltages);
     }
     catch (error) {
-        res.status(404).json({ mesage: error.message });
+        if (error instanceof Error) {
+            res.status(404).json({ mesage: error.message });
+        }
     }
 });
 export default router;
