@@ -21,12 +21,12 @@ const Row1 = (props: Props) => {
     voltage: item.voltage,
   }));
 
-  const [dataRealTime, setData] = useState([]);
+  const [dataRealTimeVoltage, setDataVoltage] = useState([]);
 
   useEffect(() => {
-    socket.on('dataRealTime', (dataRealTime) => {
-      setData(dataRealTime);
-      console.log("dataRealTime:", dataRealTime);
+    socket.on('dataRealTimeVoltage', (dataRealTimeVoltage) => {
+      setDataVoltage(dataRealTimeVoltage);
+      console.log("dataRealTimeVoltage:", dataRealTimeVoltage);
     });
   }, []);
 
@@ -35,7 +35,7 @@ const Row1 = (props: Props) => {
   useEffect(() => {
     socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
       setDataCurrent(dataRealTimeCurrent);
-      console.log("dataRealTimeCurrnet:", dataRealTimeCurrent);
+      console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
     });
   }, []);
   
@@ -106,7 +106,7 @@ const Row1 = (props: Props) => {
         <LineChart
           width={500}
           height={400}
-          data={dataRealTime}
+          data={dataRealTimeVoltage}
           margin={{
             top: 20,
             right: 20,
