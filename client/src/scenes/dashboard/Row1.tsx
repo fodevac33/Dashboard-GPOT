@@ -1,6 +1,6 @@
 import DashboardBox from '@/components/DashboardBox'
 import { useGetAcuVoltagesQuery } from '@/state/api';
-import { CartesianGrid, Legend, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
+import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import io from 'socket.io-client';
 import React, { useState, useEffect } from 'react';
 import BoxHeader from '@/components/BoxHeader';
@@ -30,6 +30,14 @@ const Row1 = (props: Props) => {
     });
   }, []);
 
+  const [dataRealTimeCurrent, setDataCurrent] = useState([]);
+
+  useEffect(() => {
+    socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
+      setDataCurrent(dataRealTimeCurrent);
+      console.log("dataRealTimeCurrnet:", dataRealTimeCurrent);
+    });
+  }, []);
   
 
 
@@ -62,7 +70,31 @@ const Row1 = (props: Props) => {
       </ResponsiveContainer>
     </DashboardBox>
 
-    <DashboardBox gridArea="b"></DashboardBox>
+    <DashboardBox gridArea="b">
+    <BoxHeader
+            title="Corriente ACU Tiempo Real"
+            sideText="Amps"
+          />
+    <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          width={500}
+          height={400}
+          data={dataRealTimeCurrent}
+          margin={{
+            top: 20,
+            right: 20,
+            left: -25,
+            bottom: 50,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="time" />
+          <YAxis/>
+          <Tooltip/>
+          <Line type="monotone" isAnimationActive={false} dataKey="current" stroke="#8884d8" dot={false}/>
+        </LineChart>
+      </ResponsiveContainer>
+    </DashboardBox>
 
     
     <DashboardBox gridArea="c">
