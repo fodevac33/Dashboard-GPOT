@@ -14,7 +14,7 @@ function socketControllerCurrent(server: http.Server) {
   const io = new Server(server);
 
   io.on("connection", (socket) => {
-    acu.on("message", function (topic: Topics, payload: object) {
+    acu.on("message", function (topic: string, payload: object) {
       console.log("Message received:", topic);
       const dataRealTimeCurrent = JSON.parse(payload.toString()) as AcuData;
 
