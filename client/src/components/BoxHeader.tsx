@@ -7,9 +7,10 @@ type Props = {
   sideText: string;
   subtitle?: string;
   icon?: React.ReactNode;
+  sideTextcolor?: string;
 };
 
-const BoxHeader = ({ icon, title, subtitle, sideText }: Props) => {
+const BoxHeader = ({ icon, title, subtitle, sideText, sideTextcolor }: Props) => {
   const { palette } = useTheme();
   return (
     <FlexBetweenBoxHeader color={palette.grey[400]} margin="1.5rem 1rem 0 1rem">
@@ -22,7 +23,7 @@ const BoxHeader = ({ icon, title, subtitle, sideText }: Props) => {
           <Typography variant="h6">{subtitle}</Typography>
         </Box>
       </FlexBetweenBoxHeader>
-      <Typography variant="h5" fontWeight="700" color={palette.tertiary[500]}>
+      <Typography variant="h5" fontWeight="700" color={sideTextcolor}>
         {sideText}
       </Typography>
     </FlexBetweenBoxHeader>

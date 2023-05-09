@@ -1,19 +1,15 @@
-import DashboardBox from '@/components/DashboardBox'
-import { useGetAcuVoltagesQuery } from '@/state/api';
+import React from 'react'
 import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
-import io from 'socket.io-client';
-import React, { useState, useEffect } from 'react';
+import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
+import { useGetAcuVoltagesQuery } from '@/state/api';
 
 
 type Props = {}
-
-const socket = io('http://localhost:1337', {
-  transports: ['websocket', 'polling']
-});
+  
+const GraphsVCP = (props: Props) => {
 
 
-const Row1 = (props: Props) => {
   const {data} = useGetAcuVoltagesQuery();
   console.log('data:', data);
   const chartData = data?.map(item => ({
@@ -21,33 +17,14 @@ const Row1 = (props: Props) => {
     voltage: item.voltage,
   }));
 
-  const [dataRealTimeVoltage, setDataVoltage] = useState([]);
-
-  useEffect(() => {
-    socket.on('dataRealTimeVoltage', (dataRealTimeVoltage) => {
-      setDataVoltage(dataRealTimeVoltage);
-      console.log("dataRealTimeVoltage:", dataRealTimeVoltage);
-    });
-  }, []);
-
-  const [dataRealTimeCurrent, setDataCurrent] = useState([]);
-
-  useEffect(() => {
-    socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
-      setDataCurrent(dataRealTimeCurrent);
-      console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
-    });
-  }, []);
-  
-
-
   return (
     <>
-    <DashboardBox gridArea="a">
+      <DashboardBox gridArea="a">
       <BoxHeader
             title="Voltaje ACU"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Volts"
+            sideTextcolor= '#D93D04'
           />
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
@@ -65,23 +42,25 @@ const Row1 = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#8884d8" dot={false}/>
+          <Line type="monotone" dataKey="voltage" stroke="#D93D04" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
-    <BoxHeader
-            title="Corriente ACU Tiempo Real"
+      <BoxHeader
+            title="Corriente ACU"
+            subtitle="Este grafica muestra los ultimos valores de corriente registrados por el ACU"
             sideText="Amps"
+            sideTextcolor= '#F27405'
           />
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
           height={400}
-          data={dataRealTimeCurrent}
+          data={chartData}
           margin={{
-            top: 20,
+            top: 15,
             right: 20,
             left: -25,
             bottom: 50,
@@ -91,24 +70,25 @@ const Row1 = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="current" stroke="#8884d8" dot={false}/>
+          <Line type="monotone" dataKey="voltage" stroke="#F27405" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
-    </DashboardBox>
+      </DashboardBox>
 
-    
     <DashboardBox gridArea="c">
-    <BoxHeader
-            title="Voltaje ACU Tiempo Real"
-            sideText="Volts"
+      <BoxHeader
+            title="Potencia ACU"
+            subtitle="Este grafica muestra los ultimos valores de potencia registrados por el ACU"
+            sideText="Watts"
+            sideTextcolor= '#F29F05'
           />
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
           height={400}
-          data={dataRealTimeVoltage}
+          data={chartData}
           margin={{
-            top: 20,
+            top: 15,
             right: 20,
             left: -25,
             bottom: 50,
@@ -118,12 +98,13 @@ const Row1 = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="voltage" stroke="#8884d8" dot={false}/>
+          <Line type="monotone" dataKey="voltage" stroke="#F29F05" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
-    </DashboardBox>
-    </>
-  )
-} 
+      </DashboardBox>
 
-export default Row1
+  </>
+  )
+}
+
+export default GraphsVCP;

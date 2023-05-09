@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {Box} from "@mui/material";
 import Navbar from "@/scenes/navbar";
 import  Dashboard from "@/scenes/dashboard";
-import Acu from "@/scenes/acu";
+import GridACUVCP from "./scenes/acu/vcp";
+import GridACUEnergies from "./scenes/acu/energies";
 
 
 
@@ -19,13 +20,14 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Box width="100%"  padding="2rem 2rem" style={{ flex: 0.5 }}>
+        <Box width="100%"  padding="2rem 0rem 0rem 2rem" style={{ flex: 0.5 }}>
           <Navbar/>
         </Box>
-        <Box width="100%" padding="1rem 2rem 4rem 2rem" style={{ flex: 4 }}>
+        <Box width="100%" padding="1rem 1rem 0rem 0rem" style={{ flex: 4 }}>
           <Routes>  
             <Route path="/" element={<Dashboard/>} />
-            <Route path="/acu" element={<Acu/>} />
+            <Route path="/acu/vcp" element={<GridACUVCP/>} />
+            <Route path="/acu/energies" element={<GridACUEnergies/>} />
           </Routes>
         </Box>  
       </ThemeProvider>

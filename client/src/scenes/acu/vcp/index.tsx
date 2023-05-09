@@ -1,15 +1,15 @@
 import { Box, useMediaQuery} from '@mui/material'
-import GraphsDashboard from './GraphsDashboard';
+import GraphsVCP from './GraphsVCP';
 
 const gridTemplateLargeScreens = `
-  "a b"
-  "a b"
-  "a b"
-  "a b"
-  "c c"
-  "c c"
-  "c c"
-  "c c"
+    "a b"
+    "a b"
+    "a b"
+    "a b"
+    "c c"
+    "c c"
+    "c c"
+    "c c"
 `;
 
 const gridTemplateSmallScreens= `
@@ -28,7 +28,7 @@ const gridTemplateSmallScreens= `
   "c"
 `;
 
-const Dashboard = () => {
+const GridACUVCP = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
     return (
       <Box
@@ -50,10 +50,11 @@ const Dashboard = () => {
           }
         }
       >
-        <GraphsDashboard/>
+        <GraphsVCP/>
       
       </Box>
     )
+
 }
 
-export default Dashboard;
+export default GridACUVCP;
