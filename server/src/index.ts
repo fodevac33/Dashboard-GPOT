@@ -7,7 +7,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import acuvoltageRoutes from "./routes/acu/acuvoltage.js";
 import { createServer } from "http";
-import socketController from "./sockets/acu/iotAcuVoltage.js"
+import AcuSocketController from "./sockets/acu/iotAcu.js";
+
 /* CONFIGURATIONS */
 dotenv.config();
 const app = express();
@@ -25,13 +26,13 @@ app.use("/acuvoltage", acuvoltageRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
+
 mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URL, {})
   .then(async () => {
     http.listen(PORT, () => console.log(`Server Port: ${PORT}`));
-    socketController(http);
   })
   .catch((error) => console.log(`${error} did not connect`));
+
+AcuSocketController(http);
+
