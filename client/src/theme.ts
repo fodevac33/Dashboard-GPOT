@@ -1,5 +1,4 @@
 export const tokens = {
-
   //With tailwind you can generate variatons of 
   // The color wiyh ctrl k+ ctrl g
   grey: {
@@ -15,15 +14,15 @@ export const tokens = {
   },
   primary: {
     // light green
-    100: "#d0fcf4",
-    200: "#a0f9e9",
-    300: "#71f5de",
-    400: "#41f2d3",
-    500: "#12efc8",
-    600: "#0ebfa0",
-    700: "#0b8f78",
-    800: "#076050",
-    900: "#043028",
+    100: "#ffe2cc",
+    200: "#ffc599",
+    300: "#ffa866",
+    400: "#ff8b33",
+    500: "#ff6e00",
+    600: "#cc5800",
+    700: "#994200",
+    800: "#662c00",
+    900: "#331600"
   },
   secondary: {
     // yellow

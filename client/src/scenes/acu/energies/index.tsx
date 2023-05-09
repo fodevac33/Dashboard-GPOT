@@ -1,15 +1,15 @@
 import { Box, useMediaQuery} from '@mui/material'
-import GraphsDashboard from './GraphsDashboard';
+import GraphsEnergies from './GraphsEnergies';
 
 const gridTemplateLargeScreens = `
-  "a b"
-  "a b"
-  "a b"
-  "a b"
-  "c c"
-  "c c"
-  "c c"
-  "c c"
+    "a b"
+    "a b"
+    "a b"
+    "a b"
+    "c d"
+    "c d"
+    "c d"
+    "c d"
 `;
 
 const gridTemplateSmallScreens= `
@@ -26,9 +26,13 @@ const gridTemplateSmallScreens= `
   "c"
   "c"
   "c"
+  "d"
+  "d"
+  "d"
+  "d"
 `;
 
-const Dashboard = () => {
+const GridACUEnergies = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
     return (
       <Box
@@ -50,10 +54,11 @@ const Dashboard = () => {
           }
         }
       >
-        <GraphsDashboard/>
+        <GraphsEnergies/>
       
       </Box>
     )
+
 }
 
-export default Dashboard;
+export default GridACUEnergies;
