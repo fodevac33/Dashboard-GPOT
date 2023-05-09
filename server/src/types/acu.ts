@@ -13,8 +13,16 @@ interface AcuData {
   current: Current;
 }
 
+interface Energy {
+  time: number;
+  imported: number;
+  exported: number;
+  net: number;
+  total: number;
+}
+
 enum Topics {
   DC_DATA = "DC_DATA",
 }
 
-export { AcuData, Voltage, Current, Topics };
+export { AcuData, Voltage, Current, Energy, Topics };
