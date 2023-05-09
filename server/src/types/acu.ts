@@ -1,3 +1,5 @@
+// Types that model the data recieved from the ACU Energy
+
 interface Voltage {
   time: number;
   voltage: number;
