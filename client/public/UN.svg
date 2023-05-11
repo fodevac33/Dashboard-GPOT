@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="816"
+   height="1056"
+   viewBox="0 0 816 1056"
+   sodipodi:docname="Universidad_Nacional_de_Colombia.ai"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="Universidad_Nacional_de_Colombia"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,1056)">
+    <path
+       d="m 565.27197,282.31201 h -34.77588 v 101.5918 c 0,60.69629 -27.79199,88.77637 -90.93603,91.43994 -34.91992,-0.64795 -83.66406,-20.23193 -83.44824,-80.42383 l -0.0718,-112.60791 h -41.32813 v 227.23194 l 125.28028,0.0723 C 531,509.32813 564.62402,445.03223 565.27197,401.47217 Z"
+       style="fill:#231f20;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       id="path10" />
+    <path
+       d="m 46.72803,509.68799 h 34.77588 v -101.5918 c 0,-60.69629 27.79199,-88.77637 90.93603,-91.43994 34.91992,0.64795 83.66406,20.23193 83.44824,80.42383 l 0.0718,112.60791 h 41.32813 V 282.45605 l -125.28028,-0.0723 C 81,282.67188 47.37598,346.96777 46.72803,390.52783 Z"
+       style="fill:#231f20;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       id="path12" />
+  </g>
+</svg>
