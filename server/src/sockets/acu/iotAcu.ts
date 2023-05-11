@@ -14,9 +14,9 @@ acu.on("connect", function () {
 function AcuSocketController(server: http.Server) {
   const io = new Server(server);
 
-  io.on("connection", (socket) => {
+  io.on("connection", () => {
     acu.on("message", function (topic: string, payload: object) {
-      console.log("Message received:", topic);
+      console.log("Message received on:", topic);
       const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
       if (arrayCurrentDataRealTime.length > 100) {
