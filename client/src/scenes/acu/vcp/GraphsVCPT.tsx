@@ -1,28 +1,63 @@
-import React from 'react'
 import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 import { useGetAcuVoltagesQuery } from '@/state/api';
+
 
 
 type Props = {}
 
+const socket = io('http://localhost:1337', {
+  transports: ['websocket', 'polling']
+});
+
+const GraphsVCPT = (props: Props) => {
+
+
+    const {data} = useGetAcuVoltagesQuery();
+    console.log('data:', data);
+    const chartData = data?.map(item => ({
+        time: item.time,
+        voltage: item.voltage,
+    }));
+
+
+    const [dataRealTimeVoltage, setDataVoltage] = useState([]);
+
+    useEffect(() => {
+      socket.on('dataRealTimeVoltage', (dataRealTimeVoltage) => {
+        setDataVoltage(dataRealTimeVoltage);
+        console.log("dataRealTimeVoltage:", dataRealTimeVoltage);
+      });
+    }, []);
   
-const GraphsVCP = (props: Props) => {
+    const [dataRealTimeCurrent, setDataCurrent] = useState([]);
+  
+    useEffect(() => {
+      socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
+        setDataCurrent(dataRealTimeCurrent);
+        console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
+      });
+    }, []);
 
+    const [dataRealTimePower, setDataPower] = useState([]);
+  
+    useEffect(() => {
+      socket.on('dataRealTimePower', (dataRealTimePower) => {
+        setDataCurrent(dataRealTimePower);
+        console.log("dataRealTimePower:", dataRealTimePower);
+      });
+    }, []);
 
-  const {data} = useGetAcuVoltagesQuery();
-  console.log('data:', data);
-  const chartData = data?.map(item => ({
-    time: item.time,
-    voltage: item.voltage,
-  }));
+    
 
   return (
     <>
       <DashboardBox gridArea="a">
       <BoxHeader
-            title="Voltaje ACU"
+            title="Voltaje ACU en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Volts"
             sideTextcolor= '#D93D04'
@@ -31,7 +66,7 @@ const GraphsVCP = (props: Props) => {
         <LineChart
           width={500}
           height={400}
-          data={chartData}
+          data={dataRealTimeVoltage}
           margin={{
             top: 15,
             right: 20,
@@ -50,7 +85,7 @@ const GraphsVCP = (props: Props) => {
 
     <DashboardBox gridArea="b">
       <BoxHeader
-            title="Corriente ACU"
+            title="Corriente ACU en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de corriente registrados por el ACU"
             sideText="Amps"
             sideTextcolor= '#F27405'
@@ -59,7 +94,7 @@ const GraphsVCP = (props: Props) => {
         <LineChart
           width={500}
           height={400}
-          data={chartData}
+          data={dataRealTimeCurrent}
           margin={{
             top: 15,
             right: 20,
@@ -71,7 +106,7 @@ const GraphsVCP = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#F27405" dot={false}/>
+          <Line type="monotone" dataKey="current" stroke="#F27405" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>
@@ -108,4 +143,4 @@ const GraphsVCP = (props: Props) => {
   )
 }
 
-export default GraphsVCP;
+export default GraphsVCPT;
