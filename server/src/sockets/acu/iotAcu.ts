@@ -65,6 +65,7 @@ function AcuSocketController(server: http.Server) {
 
 
       io.emit("dataRealTimeVoltage", AcuIotData.arrayVoltageDataRealTime);
+      io.emit("dataRealTimeCurrent", AcuIotData.arrayVoltageDataRealTime);
       io.emit("dataRealTimePower", AcuIotData.arrayPowerDataRealTime);
       io.emit("dataRealTimeImportedEnergy", AcuIotData.arrayImportedDataRealTime);
       io.emit("dataRealTimeExportedEnergy", AcuIotData.arrayExportedDataRealTime);
