@@ -9,15 +9,8 @@ def RandomNumber():
 
 while True:
 
-    voltage = RandomNumber() 
-    current = RandomNumber()
-    power = RandomNumber()
-    imported = RandomNumber()
-    exported = RandomNumber()
-    net = RandomNumber()
-    total = RandomNumber()
+    voltage, current, power, imported, exported, net, total = [RandomNumber() for _ in range(7)]
 
-    # message = f'{{"time": {num}, "voltage": {voltage}, "current": {current}}}'
     message = json.dumps({
         "voltage":{
             "time": num, 
@@ -64,4 +57,4 @@ while True:
 
     num += 1 
 
-    time.sleep(5)
+    time.sleep(0.1)
