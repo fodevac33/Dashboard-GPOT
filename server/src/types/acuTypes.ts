@@ -59,6 +59,7 @@ interface IotAcuRealtimeArrayObject {
   arrayTotalDataRealTime: TotalEnergy[];
 }
 
+
 enum Topics {
   DC_DATA = "DC_DATA",
 }

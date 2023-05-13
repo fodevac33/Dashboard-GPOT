@@ -1,7 +1,8 @@
 import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
-import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acu.js";
+import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acuTypes.js";
 import http from "http";
+import { preventArrayDataOverflow } from "../../types/acuMethods.js";
 
 let AcuIotData: IotAcuRealtimeArrayObject = {
   arrayVoltageDataRealTime: [],
@@ -27,41 +28,43 @@ function AcuSocketController(server: http.Server) {
       console.log("Message received on:", topic);
       const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
-      if (AcuIotData.arrayCurrentDataRealTime.length > 100) {
-        AcuIotData.arrayCurrentDataRealTime.shift();
-      }
+      preventArrayDataOverflow(100, AcuIotData);
 
-      if (AcuIotData.arrayVoltageDataRealTime.length > 100) {
-        AcuIotData.arrayVoltageDataRealTime.shift();
-      }
-
-      if (AcuIotData.arrayPowerDataRealTime.length > 100) {
-        AcuIotData.arrayPowerDataRealTime.shift();
-      }
-
-      if (AcuIotData.arrayImportedDataRealTime.length > 100) {
-        AcuIotData.arrayImportedDataRealTime.shift();
-      }
-
-      if (AcuIotData.arrayExportedDataRealTime.length > 100) {
-        AcuIotData.arrayExportedDataRealTime.shift();
-      }
-
-      if (AcuIotData.arrayNetDataRealTime.length > 100) {
-        AcuIotData.arrayNetDataRealTime.shift();
-      }
-
-      if (AcuIotData.arrayTotalDataRealTime.length > 100) {
-        AcuIotData.arrayTotalDataRealTime.shift();
-      }
+      // if (AcuIotData.arrayCurrentDataRealTime.length > 100) {
+      //   AcuIotData.arrayCurrentDataRealTime.shift();
+      // }
+      //
+      // if (AcuIotData.arrayVoltageDataRealTime.length > 100) {
+      //   AcuIotData.arrayVoltageDataRealTime.shift();
+      // }
+      //
+      // if (AcuIotData.arrayPowerDataRealTime.length > 100) {
+      //   AcuIotData.arrayPowerDataRealTime.shift();
+      // }
+      //
+      // if (AcuIotData.arrayImportedDataRealTime.length > 100) {
+      //   AcuIotData.arrayImportedDataRealTime.shift();
+      // }
+      //
+      // if (AcuIotData.arrayExportedDataRealTime.length > 100) {
+      //   AcuIotData.arrayExportedDataRealTime.shift();
+      // }
+      //
+      // if (AcuIotData.arrayNetDataRealTime.length > 100) {
+      //   AcuIotData.arrayNetDataRealTime.shift();
+      // }
+      //
+      // if (AcuIotData.arrayTotalDataRealTime.length > 100) {
+      //   AcuIotData.arrayTotalDataRealTime.shift();
+      // }
 
       AcuIotData.arrayCurrentDataRealTime.push(dataRealTime.current);
-      AcuIotData.arrayVoltageDataRealTime.push(dataRealTime.voltage)
-      AcuIotData.arrayPowerDataRealTime.push(dataRealTime.power)
-      AcuIotData.arrayImportedDataRealTime.push(dataRealTime.energies.imported)
-      AcuIotData.arrayExportedDataRealTime.push(dataRealTime.energies.exported)
-      AcuIotData.arrayNetDataRealTime.push(dataRealTime.energies.net)
-      AcuIotData.arrayTotalDataRealTime.push(dataRealTime.energies.total)
+      AcuIotData.arrayVoltageDataRealTime.push(dataRealTime.voltage);
+      AcuIotData.arrayPowerDataRealTime.push(dataRealTime.power);
+      AcuIotData.arrayImportedDataRealTime.push(dataRealTime.energies.imported);
+      AcuIotData.arrayExportedDataRealTime.push(dataRealTime.energies.exported);
+      AcuIotData.arrayNetDataRealTime.push(dataRealTime.energies.net);
+      AcuIotData.arrayTotalDataRealTime.push(dataRealTime.energies.total);
 
 
       io.emit("dataRealTimeVoltage", AcuIotData.arrayVoltageDataRealTime);
@@ -76,3 +79,4 @@ function AcuSocketController(server: http.Server) {
 }
 
 export default AcuSocketController;
+
