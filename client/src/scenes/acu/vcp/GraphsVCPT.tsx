@@ -2,26 +2,14 @@ import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, L
 import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import { useGetAcuVoltagesQuery } from '@/state/api';
-
+import socket from '@/state/socket';
 
 
 type Props = {}
 
-const socket = io('http://localhost:1337', {
-  transports: ['websocket', 'polling']
-});
+
 
 const GraphsVCPT = (props: Props) => {
-
-
-    const {data} = useGetAcuVoltagesQuery();
-    console.log('data:', data);
-    const chartData = data?.map(item => ({
-        time: item.time,
-        voltage: item.voltage,
-    }));
 
 
     const [dataRealTimeVoltage, setDataVoltage] = useState([]);
@@ -46,7 +34,7 @@ const GraphsVCPT = (props: Props) => {
   
     useEffect(() => {
       socket.on('dataRealTimePower', (dataRealTimePower) => {
-        setDataCurrent(dataRealTimePower);
+        setDataPower(dataRealTimePower);
         console.log("dataRealTimePower:", dataRealTimePower);
       });
     }, []);
@@ -78,7 +66,7 @@ const GraphsVCPT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#D93D04" dot={false}/>
+          <Line type="monotone" isAnimationActive={false} dataKey="voltage" stroke="#D93D04" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>
@@ -106,7 +94,7 @@ const GraphsVCPT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="current" stroke="#F27405" dot={false}/>
+          <Line type="monotone" dataKey="current" isAnimationActive={false} stroke="#F27405" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>
@@ -122,7 +110,7 @@ const GraphsVCPT = (props: Props) => {
         <LineChart
           width={500}
           height={400}
-          data={chartData}
+          data={dataRealTimePower}
           margin={{
             top: 15,
             right: 20,
@@ -134,7 +122,7 @@ const GraphsVCPT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#F29F05" dot={false}/>
+          <Line type="monotone" dataKey="power" isAnimationActive={false} stroke="#F29F05" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>

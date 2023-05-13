@@ -1,17 +1,13 @@
 import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
-import io from 'socket.io-client';
+import socket from '@/state/socket';
 import React, { useState, useEffect } from 'react';
 
 
 
 type Props = {}
 
-const socket = io('http://localhost:1337', {
-  transports: ['websocket', 'polling']
-});
-  
 const GraphsEnergiesT = (props: Props) => {
 
     const [dataRealTimeImportedEnergy, setDataImportedEnergy] = useState([]);
@@ -75,7 +71,7 @@ const GraphsEnergiesT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="imported" stroke="#98D936" dot={false}/>
+          <Line type="monotone" isAnimationActive={false} dataKey="imported" stroke="#98D936" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>
@@ -103,7 +99,7 @@ const GraphsEnergiesT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="exported" stroke="#4ABF2A" dot={false}/>
+          <Line type="monotone" isAnimationActive={false} dataKey="exported" stroke="#4ABF2A" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>
@@ -131,7 +127,7 @@ const GraphsEnergiesT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="net" stroke="#D7F205" dot={false}/>
+          <Line type="monotone" isAnimationActive={false} dataKey="net" stroke="#D7F205" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>
@@ -159,7 +155,7 @@ const GraphsEnergiesT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="total" stroke="#84D98A" dot={false}/>
+          <Line type="monotone" isAnimationActive={false} dataKey="total" stroke="#84D98A" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>

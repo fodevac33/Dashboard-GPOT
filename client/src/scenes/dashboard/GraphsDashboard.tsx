@@ -1,16 +1,13 @@
 import DashboardBox from '@/components/DashboardBox'
 import { useGetAcuVoltagesQuery } from '@/state/api';
 import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
-import io from 'socket.io-client';
+import socket from '@/state/socket';
 import React, { useState, useEffect } from 'react';
 import BoxHeader from '@/components/BoxHeader';
 
 
 type Props = {}
 
-const socket = io('http://localhost:1337', {
-  transports: ['websocket', 'polling']
-});
 
 
 const GraphsDashboard = (props: Props) => {
