@@ -13,7 +13,7 @@ const socket = io('http://localhost:1337', {
   transports: ['websocket', 'polling']
 });
 
-const GraphsVCPS = (props: Props) => {
+const GraphsVCPT = (props: Props) => {
 
 
     const {data} = useGetAcuVoltagesQuery();
@@ -41,6 +41,17 @@ const GraphsVCPS = (props: Props) => {
         console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
       });
     }, []);
+
+    const [dataRealTimePower, setDataPower] = useState([]);
+  
+    useEffect(() => {
+      socket.on('dataRealTimePower', (dataRealTimePower) => {
+        setDataCurrent(dataRealTimePower);
+        console.log("dataRealTimePower:", dataRealTimePower);
+      });
+    }, []);
+
+    
 
   return (
     <>
@@ -132,4 +143,4 @@ const GraphsVCPS = (props: Props) => {
   )
 }
 
-export default GraphsVCPS;
+export default GraphsVCPT;

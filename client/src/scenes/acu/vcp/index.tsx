@@ -1,6 +1,6 @@
 import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import GraphsVCP from './GraphsVCP';
-import GraphsVCPS from './GraphsVCPS'; 
+import GraphsVCPT from './GraphsVCPT'; 
 import React from 'react';
 
 
@@ -75,7 +75,7 @@ const GridACUVCP = () => {
       >
 
         {tiempo === "Día" && <GraphsVCP/>}
-        {tiempo === "Tiempo Real" && <GraphsVCPS/>}
+        {tiempo === "Tiempo Real" && <GraphsVCPT/>}
       
       </Box>
       </> 
