@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
 import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acuTypes.js";
 import http from "http";
-import { preventArrayDataOverflow } from "../../types/acuMethods.js";
+import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acuMethods.js";
 
 let AcuIotData: IotAcuRealtimeArrayObject = {
   arrayVoltageDataRealTime: [],
@@ -30,50 +30,9 @@ function AcuSocketController(server: http.Server) {
 
       preventArrayDataOverflow(100, AcuIotData);
 
-      // if (AcuIotData.arrayCurrentDataRealTime.length > 100) {
-      //   AcuIotData.arrayCurrentDataRealTime.shift();
-      // }
-      //
-      // if (AcuIotData.arrayVoltageDataRealTime.length > 100) {
-      //   AcuIotData.arrayVoltageDataRealTime.shift();
-      // }
-      //
-      // if (AcuIotData.arrayPowerDataRealTime.length > 100) {
-      //   AcuIotData.arrayPowerDataRealTime.shift();
-      // }
-      //
-      // if (AcuIotData.arrayImportedDataRealTime.length > 100) {
-      //   AcuIotData.arrayImportedDataRealTime.shift();
-      // }
-      //
-      // if (AcuIotData.arrayExportedDataRealTime.length > 100) {
-      //   AcuIotData.arrayExportedDataRealTime.shift();
-      // }
-      //
-      // if (AcuIotData.arrayNetDataRealTime.length > 100) {
-      //   AcuIotData.arrayNetDataRealTime.shift();
-      // }
-      //
-      // if (AcuIotData.arrayTotalDataRealTime.length > 100) {
-      //   AcuIotData.arrayTotalDataRealTime.shift();
-      // }
+      appendAcuDataToRealTimeArray(AcuIotData, dataRealTime);
 
-      AcuIotData.arrayCurrentDataRealTime.push(dataRealTime.current);
-      AcuIotData.arrayVoltageDataRealTime.push(dataRealTime.voltage);
-      AcuIotData.arrayPowerDataRealTime.push(dataRealTime.power);
-      AcuIotData.arrayImportedDataRealTime.push(dataRealTime.energies.imported);
-      AcuIotData.arrayExportedDataRealTime.push(dataRealTime.energies.exported);
-      AcuIotData.arrayNetDataRealTime.push(dataRealTime.energies.net);
-      AcuIotData.arrayTotalDataRealTime.push(dataRealTime.energies.total);
-
-
-      io.emit("dataRealTimeVoltage", AcuIotData.arrayVoltageDataRealTime);
-      io.emit("dataRealTimeCurrent", AcuIotData.arrayCurrentDataRealTime);
-      io.emit("dataRealTimePower", AcuIotData.arrayPowerDataRealTime);
-      io.emit("dataRealTimeImportedEnergy", AcuIotData.arrayImportedDataRealTime);
-      io.emit("dataRealTimeExportedEnergy", AcuIotData.arrayExportedDataRealTime);
-      io.emit("dataRealTimeNetEnergy", AcuIotData.arrayNetDataRealTime);
-      io.emit("dataRealTimeTotalEnergy", AcuIotData.arrayTotalDataRealTime);
+      emitRealTimeArrays(io, AcuIotData);
     });
   });
 }
