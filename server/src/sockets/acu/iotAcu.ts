@@ -1,7 +1,8 @@
 import { Server } from "socket.io";
+import http from "http";
+
 import acu from "../../devices/acu/AcuDevice.js";
 import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acuTypes.js";
-import http from "http";
 import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acuMethods.js";
 
 let AcuIotData: IotAcuRealtimeArrayObject = {
