@@ -10,21 +10,57 @@ interface Current {
   current: number;
 }
 
+interface Power {
+  time: number;
+  power: number;
+}
+
+interface ImportedEnergy {
+  time: number;
+  imported: number;
+}
+
+interface ExportedEnergy {
+  time: number;
+  exported: number;
+}
+
+interface NetEnergy {
+  time: number;
+  net: number;
+}
+
+interface TotalEnergy {
+  time: number;
+  total: number;
+}
+
+interface Energies {
+  imported: ImportedEnergy;
+  exported: ExportedEnergy;
+  net: NetEnergy;
+  total: TotalEnergy;
+}
+
 interface AcuData {
   voltage: Voltage;
   current: Current;
+  power: Power;
+  energies: Energies;
 }
 
-interface Energy {
-  time: number;
-  imported: number;
-  exported: number;
-  net: number;
-  total: number;
+interface IotAcuRealtimeArrayObject {
+  arrayCurrentDataRealTime: Current[];
+  arrayVoltageDataRealTime: Voltage[];
+  arrayPowerDataRealTime: Power[];
+  arrayImportedDataRealTime: ImportedEnergy[];
+  arrayExportedDataRealTime: ExportedEnergy[];
+  arrayNetDataRealTime: NetEnergy[];
+  arrayTotalDataRealTime: TotalEnergy[];
 }
 
 enum Topics {
   DC_DATA = "DC_DATA",
 }
 
-export { AcuData, Voltage, Current, Energy, Topics };
+export { AcuData, IotAcuRealtimeArrayObject, Topics };
