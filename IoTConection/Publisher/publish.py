@@ -57,4 +57,4 @@ while True:
 
     num += 1 
 
-    time.sleep(0.1)
+    time.sleep(0.5)
