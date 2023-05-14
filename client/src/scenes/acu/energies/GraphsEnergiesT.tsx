@@ -1,4 +1,4 @@
-import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
+import CustomLineChart from '@/components/CustomLineChart';
 import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 import socket from '@/state/socket';
@@ -55,25 +55,13 @@ const GraphsEnergiesT = (props: Props) => {
             sideText="Watts"
             sideTextcolor='#98D936'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={dataRealTimeImportedEnergy}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="imported" stroke="#98D936" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+      <CustomLineChart 
+        chartData={dataRealTimeImportedEnergy}
+        xAsisDatakey='time'
+        yAsisDatakey='imported'
+        stroke = '#98D936'
+        animation = {false}/>
+        
     </DashboardBox>
 
     <DashboardBox gridArea="b">
@@ -83,26 +71,14 @@ const GraphsEnergiesT = (props: Props) => {
             sideText="Watts"
             sideTextcolor='#4ABF2A'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={dataRealTimeExportedEnergy}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="exported" stroke="#4ABF2A" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
-      </DashboardBox>
+      <CustomLineChart 
+          chartData={dataRealTimeExportedEnergy}
+          xAsisDatakey='time'
+          yAsisDatakey='exported'
+          stroke = '#4ABF2A'
+          animation = {false}/>
+         
+    </DashboardBox>
 
     <DashboardBox gridArea="c">
       <BoxHeader
@@ -111,25 +87,13 @@ const GraphsEnergiesT = (props: Props) => {
             sideText="Watts"
             sideTextcolor='#D7F205'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={dataRealTimeNetEnergy}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="net" stroke="#D7F205" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+      <CustomLineChart 
+          chartData={dataRealTimeNetEnergy}
+          xAsisDatakey='time'
+          yAsisDatakey='net'
+          stroke = '#D7F205'
+          animation = {false}/>
+           
       </DashboardBox>
 
       <DashboardBox gridArea="d">
@@ -139,25 +103,14 @@ const GraphsEnergiesT = (props: Props) => {
             sideText="Watts"
             sideTextcolor='#84D98A'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={dataRealTimeTotalEnergy}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="total" stroke="#84D98A" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+      <CustomLineChart 
+          chartData={dataRealTimeTotalEnergy}
+          xAsisDatakey='time'
+          yAsisDatakey='total'
+          stroke = '#84D98A'
+          animation = {false}/>
+           
+      
       </DashboardBox>
 
   </>

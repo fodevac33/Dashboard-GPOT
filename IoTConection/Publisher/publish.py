@@ -64,4 +64,4 @@ while True:
 
     num += 1 
 
-    time.sleep(5)
+    time.sleep(0.2)

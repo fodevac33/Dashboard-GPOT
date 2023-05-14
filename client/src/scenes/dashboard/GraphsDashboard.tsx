@@ -1,9 +1,9 @@
 import DashboardBox from '@/components/DashboardBox'
 import { useGetAcuVoltagesQuery } from '@/state/api';
-import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import socket from '@/state/socket';
 import React, { useState, useEffect } from 'react';
 import BoxHeader from '@/components/BoxHeader';
+import CustomLineChart from '@/components/CustomLineChart';
 
 
 type Props = {}
@@ -46,25 +46,11 @@ const GraphsDashboard = (props: Props) => {
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Volts"
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={chartData}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#8884d8" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+    <CustomLineChart 
+          chartData={chartData}
+          xAsisDatakey='time'
+          yAsisDatakey='voltage'
+          stroke = '#8884d8'/>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
@@ -72,25 +58,13 @@ const GraphsDashboard = (props: Props) => {
             title="Corriente ACU Tiempo Real"
             sideText="Amps"
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={dataRealTimeCurrent}
-          margin={{
-            top: 20,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="current" stroke="#8884d8" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+    <CustomLineChart 
+          chartData={dataRealTimeCurrent}
+          xAsisDatakey='time'
+          yAsisDatakey='current'
+          stroke = '#8884d8'
+          animation = {false}/>
+          
     </DashboardBox>
 
     
@@ -99,25 +73,13 @@ const GraphsDashboard = (props: Props) => {
             title="Voltaje ACU Tiempo Real"
             sideText="Volts"
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={dataRealTimeVoltage}
-          margin={{
-            top: 20,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="voltage" stroke="#8884d8" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+    <CustomLineChart 
+          chartData={dataRealTimeVoltage}
+          xAsisDatakey='time'
+          yAsisDatakey='voltage'
+          stroke = '#8884d8'
+          animation = {false}/>
+          
     </DashboardBox>
     </>
   )
