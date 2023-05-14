@@ -1,6 +1,10 @@
 from connect import credentials, client_id, mqtt_connection
 from awscrt import mqtt
-import random, json, time
+import random, json, argparse, time
+
+parser = argparse.ArgumentParser()
+parser.add_argument('publishing_speed', type=float)
+args = parser.parse_args()
 
 num = 0
 
@@ -57,4 +61,4 @@ while True:
 
     num += 1 
 
-    time.sleep(0.5)
+    time.sleep(args.publishing_speed)
