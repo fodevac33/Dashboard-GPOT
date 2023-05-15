@@ -2,7 +2,7 @@ import DashboardBox from '@/components/DashboardBox'
 import { useGetAcuVoltagesQuery } from '@/state/api';
 import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import socket from '@/state/socket';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import BoxHeader from '@/components/BoxHeader';
 
 

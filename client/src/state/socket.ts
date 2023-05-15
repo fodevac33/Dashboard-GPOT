@@ -6,5 +6,4 @@ const socket = io('http://localhost:1337', {
   reconnection: false
 });
 
-
 export default socket;

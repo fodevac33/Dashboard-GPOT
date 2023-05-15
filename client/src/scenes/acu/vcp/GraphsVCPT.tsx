@@ -8,9 +8,7 @@ import socket from '@/state/socket';
 type Props = {}
 
 
-
 const GraphsVCPT = (props: Props) => {
-
 
     const [dataRealTimeVoltage, setDataVoltage] = useState([]);
 
@@ -66,7 +64,7 @@ const GraphsVCPT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" isAnimationActive={false} dataKey="voltage" stroke="#D93D04" dot={false}/>
+          <Line type="monotone" dataKey="voltage" stroke="#D93D04" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>
@@ -94,7 +92,7 @@ const GraphsVCPT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="current" isAnimationActive={false} stroke="#F27405" dot={false}/>
+          <Line type="monotone" dataKey="current" stroke="#F27405" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>
@@ -122,7 +120,7 @@ const GraphsVCPT = (props: Props) => {
           <XAxis dataKey="time" />
           <YAxis/>
           <Tooltip/>
-          <Line type="monotone" dataKey="power" isAnimationActive={false} stroke="#F29F05" dot={false}/>
+          <Line type="monotone" dataKey="power" stroke="#F29F05" dot={false}/>
         </LineChart>
       </ResponsiveContainer>
       </DashboardBox>
