@@ -21,13 +21,13 @@ function appendAcuDataToRealTimeArray(arrayObject: acuTypes.IotAcuRealtimeArrayO
 }
 
 function emitRealTimeArrays(io: Server, arrayObject: acuTypes.IotAcuRealtimeArrayObject) {
-    io.emit("dataRealTimeVoltage", arrayObject.arrayVoltageDataRealTime);
-    io.emit("dataRealTimeCurrent", arrayObject.arrayCurrentDataRealTime);
-    io.emit("dataRealTimePower", arrayObject.arrayPowerDataRealTime);
-    io.emit("dataRealTimeImportedEnergy", arrayObject.arrayImportedDataRealTime);
-    io.emit("dataRealTimeExportedEnergy", arrayObject.arrayExportedDataRealTime);
-    io.emit("dataRealTimeNetEnergy", arrayObject.arrayNetDataRealTime);
-    io.emit("dataRealTimeTotalEnergy", arrayObject.arrayTotalDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.Voltage, arrayObject.arrayVoltageDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.Current, arrayObject.arrayCurrentDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.Power, arrayObject.arrayPowerDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.ImportedEnergy, arrayObject.arrayImportedDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.ExportedEnergy, arrayObject.arrayExportedDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.NetEnergy, arrayObject.arrayNetDataRealTime);
+    io.emit(acuTypes.SocketEventEmmiters.TimeTotalEnergy, arrayObject.arrayTotalDataRealTime);
 }
 
 export {preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays}

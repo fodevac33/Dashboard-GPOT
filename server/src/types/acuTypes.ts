@@ -59,9 +59,18 @@ interface IotAcuRealtimeArrayObject {
   arrayTotalDataRealTime: TotalEnergy[];
 }
 
+enum SocketEventEmmiters {
+  Voltage = "dataRealTimeVoltage",
+  Current = "dataRealTimeCurrent",
+  Power = "dataRealTimePower",
+  ImportedEnergy = "dataRealTimeImportedEnergy",
+  ExportedEnergy = "dataRealTimeExportedEnergy",
+  NetEnergy = "dataRealTimeNetEnergy",
+  TimeTotalEnergy = "dataRealTimeTotalEnergy"
+}
 
 enum Topics {
   DC_DATA = "DC_DATA",
 }
 
-export { AcuData, IotAcuRealtimeArrayObject, Topics };
+export { AcuData, IotAcuRealtimeArrayObject, Topics, SocketEventEmmiters };
