@@ -1,8 +1,8 @@
 import React from 'react'
-import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 import { useGetAcuVoltagesQuery } from '@/state/api';
+import CustomLineChart from '@/components/CustomLineChart';
 
 
 type Props = {}
@@ -27,25 +27,11 @@ const GraphsVCP = (props: Props) => {
             sideText="Volts"
             sideTextcolor= '#D93D04'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={chartData}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#D93D04" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+          <CustomLineChart 
+        chartData={chartData}
+        xAsisDatakey='time'
+        yAsisDatakey='voltage'
+        stroke='#D93D04'/>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
@@ -55,25 +41,11 @@ const GraphsVCP = (props: Props) => {
             sideText="Amps"
             sideTextcolor= '#F27405'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={chartData}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#F27405" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+      <CustomLineChart 
+        chartData={chartData}
+        xAsisDatakey='time'
+        yAsisDatakey='voltage'
+        stroke='#F27405'/>
       </DashboardBox>
 
     <DashboardBox gridArea="c">
@@ -83,25 +55,11 @@ const GraphsVCP = (props: Props) => {
             sideText="Watts"
             sideTextcolor= '#F29F05'
           />
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={400}
-          data={chartData}
-          margin={{
-            top: 15,
-            right: 20,
-            left: -25,
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis/>
-          <Tooltip/>
-          <Line type="monotone" dataKey="voltage" stroke="#F29F05" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+        <CustomLineChart 
+        chartData={chartData}
+        xAsisDatakey='time'
+        yAsisDatakey='voltage'
+        stroke='#F29F05'/>
       </DashboardBox>
 
   </>
