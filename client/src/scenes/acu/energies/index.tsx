@@ -43,7 +43,9 @@ const GridACUEnergies = () => {
       <Box paddingRight="1rem " sx={{ display: "flex", justifyContent: "right"}}>
         <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' },
          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: '#98D936'},
+          borderColor: '#98D936'}, "& label.Mui-focused": {
+            color: '#98D936'
+          },
         }} >
           <InputLabel sx={{color:"white"}}>Tiempo</InputLabel>
           <Select

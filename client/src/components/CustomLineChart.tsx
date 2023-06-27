@@ -24,7 +24,7 @@ const CustomLineChart = ({chartData, xAsisDatakey, yAsisDatakey, stroke, animati
                 bottom: 50,
             }}
             >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
             <XAxis dataKey= {xAsisDatakey}/>
             <YAxis/>
             <Tooltip/>

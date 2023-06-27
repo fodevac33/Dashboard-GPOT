@@ -12,7 +12,7 @@ const SidebarLink = styled(Link)`
   list-style: none;
   height: 20px;
   text-decoration: none; 
-  
+  justify-content: space-between;
 `;
 
 const DropDownLink = styled(Link)`
@@ -31,21 +31,21 @@ const SubMenu = ({ item}: { item: DropDownItem }) => {
     const showSubnav = () => setSubnav(!subnav);
     const {palette} = useTheme();
     const { pathname } = useLocation();
-    console.log(pathname);
-    console.log(item.path);
+    console.log("pathname:" + pathname);
+    console.log("item.path:" + item.path);
     
     return (
       <>
       <SidebarLink to={item.path}
       onClick={item.subnav && showSubnav}
-      style={{ color: pathname === item.path || (item.title === "Acu" && pathname.startsWith("/acu"))? "white": palette.grey[700] }}>
+      style={{ color: pathname === item.path || (item.title === "Acu" && pathname.startsWith("/acu")) || (item.title === "Circuitor" && pathname.startsWith("/circuitor")) ? "white": palette.grey[700] }}>
         <Box sx={{ display: "flex", alignItems: "center"}}>
           {item.icon}
           <Typography variant='h2' sx={{ fontSize: "18px", marginLeft: "12px"}}>
             {item.title}
           </Typography>
         </Box>
-        <Box sx={{ marginLeft: "5rem", alignItems: "center"}}>
+        <Box sx={{alignItems:"center", marginLeft:"1rem"}}>
           {item.subnav && subnav
             ? item.iconOpened
             : item.subnav
