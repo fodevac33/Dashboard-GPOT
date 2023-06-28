@@ -22,8 +22,8 @@ const GraphsVCP = (props: Props) => {
     <>
       <DashboardBox gridArea="a">
       <BoxHeader
-            title="Voltaje ACU"
-            subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
+            title="Voltaje Circuitor - Linea 1"
+            subtitle="Este grafica muestra los valores de voltaje registrados por el Circuitor en la linea 1"
             sideText="Volts"
             sideTextcolor= '#D93D04'
           />
@@ -36,8 +36,8 @@ const GraphsVCP = (props: Props) => {
 
     <DashboardBox gridArea="b">
       <BoxHeader
-            title="Corriente ACU"
-            subtitle="Este grafica muestra los ultimos valores de corriente registrados por el ACU"
+            title="Corriente Circuitor - Linea 1"
+            subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor en la linea 1"
             sideText="Amps"
             sideTextcolor= '#F27405'
           />
@@ -50,8 +50,8 @@ const GraphsVCP = (props: Props) => {
 
     <DashboardBox gridArea="c">
       <BoxHeader
-            title="Potencia ACU"
-            subtitle="Este grafica muestra los ultimos valores de potencia registrados por el ACU"
+            title="Potencia ACU - Linea 1"
+            subtitle="Este grafica muestra los ultimos valores de potencia registrados por el Circuitor en la linea 1"
             sideText="Watts"
             sideTextcolor= '#F29F05'
           />

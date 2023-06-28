@@ -48,9 +48,22 @@ export const DropDownItem: DropDownItem[] = [
   },
   {	
     title: "Circuitor",
-    path: '/circuitor',
+    path: '#',
     iconClosed: <ArrowDropDownIcon />,
     iconOpened: <ArrowDropUpIcon />,
     icon: <SpeedIcon />,
-  }
+    
+    subnav:[
+      {
+        title: "VCP",
+        path: '/circuitor/vcp',
+        icon: <SpeedIcon/>
+      },
+      {
+        title: "Fasores",
+        path: '/circuitor/fasores',
+        icon: <SpeedIcon/>
+      }
+    ]
+  },
 ];

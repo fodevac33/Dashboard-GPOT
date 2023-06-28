@@ -1,39 +1,38 @@
 import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
-import { Current, AcuData, Topics, Voltage } from "../../types/acu.js";
-import http from "http";
+import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acuTypes.js";
+import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acuMethods.js";
 
-let arrayCurrentDataRealTime: Current[] = [];
-let arrayVoltageDataRealTime: Voltage[] = [];
+let AcuIotData: IotAcuRealtimeArrayObject = {
+  arrayVoltageDataRealTime: [],
+  arrayCurrentDataRealTime: [],
+  arrayPowerDataRealTime: [],
+  arrayImportedDataRealTime: [],
+  arrayExportedDataRealTime: [],
+  arrayNetDataRealTime: [],
+  arrayTotalDataRealTime: [],
 
-acu.on("connect", function () {
-  console.log("Connected to AWS IoT");
-  acu.subscribe(Topics.DC_DATA);
-});
+}
 
-function AcuSocketController(server: http.Server) {
-  const io = new Server(server);
 
-  io.on("connection", () => {
-    acu.on("message", function (topic: string, payload: object) {
-      console.log("Message received on:", topic);
-      const dataRealTime= JSON.parse(payload.toString()) as AcuData;
+function acuSocketController(io: Server) {
 
-      if (arrayCurrentDataRealTime.length > 100) {
-        arrayCurrentDataRealTime.shift();
-      }
+  acu.on("connect", function () {
+    console.log("Connected to AWS IoT");
+    acu.subscribe(Topics.DC_DATA);
+  });
 
-      if (arrayVoltageDataRealTime.length > 100) {
-        arrayVoltageDataRealTime.shift();
-      }
+  acu.on("message", function (topic: string, payload: object) {
+    console.log("Message received on:", topic);
+    const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
-      arrayCurrentDataRealTime.push(dataRealTime.current);
-      arrayVoltageDataRealTime.push(dataRealTime.voltage)
+    preventArrayDataOverflow(100, AcuIotData);
 
-      io.emit("dataRealTimeCurrent", arrayCurrentDataRealTime);
-      io.emit("dataRealTimeVoltage", arrayVoltageDataRealTime);
-    });
+    appendAcuDataToRealTimeArray(AcuIotData, dataRealTime);
+
+    emitRealTimeArrays(io, AcuIotData)
   });
 }
 
-export default AcuSocketController;
+export default acuSocketController;
+
