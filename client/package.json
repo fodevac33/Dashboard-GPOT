@@ -22,7 +22,8 @@
     "recharts": "^2.5.0",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
-    "styled-components": "^5.3.10"
+    "styled-components": "^5.3.10",
+    "victory": "^36.6.11"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",

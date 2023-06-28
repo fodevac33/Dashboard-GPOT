@@ -8,7 +8,8 @@ import Navbar from "@/scenes/navbar";
 import  Dashboard from "@/scenes/dashboard";
 import GridACUVCP from "./scenes/acu/vcp";
 import GridACUEnergies from "./scenes/acu/energies";
-import GridCircuitorVCP from "./scenes/circuitor/vcp"
+import GridCircuitorVCP from "./scenes/circuitor/vcp";
+import GridCircuitorFasores from "./scenes/circuitor/fasores";
 
 
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/acu/vcp" element={<GridACUVCP/>} />
             <Route path="/acu/energies" element={<GridACUEnergies/>} />
             <Route path="/circuitor/vcp" element={<GridCircuitorVCP/>} />
+            <Route path="/circuitor/fasores" element={<GridCircuitorFasores/>} />
           </Routes>
         </Box>  
       </ThemeProvider>
