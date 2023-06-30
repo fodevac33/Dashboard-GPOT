@@ -1,8 +1,8 @@
 import React from 'react'
 import DashboardBox from '@/components/DashboardBox';
-import { useGetAcuVoltagesQuery } from '@/state/api';
 import BasicTable from '@/components/BasicTable';
 import { VictoryChart, VictoryPolarAxis,VictoryTheme, VictoryBar } from 'victory';
+
 
 
 
@@ -11,32 +11,24 @@ type Props = {}
   
 const GraphPhasors = (props: Props) => {
 
+  const directionsKeys = [0, 122.7, 243];
+  const valuesdirections = directionsKeys.map(String);
 
-  const {data} = useGetAcuVoltagesQuery();
-  console.log('data:', data);
-  const chartData = data?.map(item => ({
-    time: item.time,
-    voltage: item.voltage,
-  }));
-  
-  const directionsKeys = [0.8, 122.7, 243.6];
-  const directions = {
-    0.8: "0.8",
-    122.7: "122.7",
-    243.6: "243.6"
-  };
-  
-  const directions2Keys = [27, 165.5, 243.6];
-  const directions2 = {
-    27: "27",
-    165.5: "165.5",
-    243.6: "243.6"
-  };
+  const directions = directionsKeys.reduce((obj, key, index) => {
+    obj[key] = valuesdirections[index];
+    return obj;
+  }, {} as { [key: number]: string });
 
-  
+  const directions2Keys = [27, 165, 243];
+  const valuesdirections2 = directions2Keys.map(String);
 
+  const directions2 = directions2Keys.reduce((obj, key, index) => {
+    obj[key] = valuesdirections2[index];
+    return obj;
+  }, {} as { [key: number]: string });
+  
   const colors = ["#FF0A0A","#4FDC04","#3498DB"];
-  
+
   let index = 0;
 
   function createData(
@@ -71,7 +63,7 @@ const GraphPhasors = (props: Props) => {
         polar
         animate={{ duration: 500, onLoad: { duration: 500 } }}
         theme={VictoryTheme.material}
-        domain={{ x: [0, 360], y: [0, 2] }}
+        domain={{ y: [0, 2] }}
       >
         <VictoryPolarAxis
           dependentAxis
@@ -134,7 +126,7 @@ const GraphPhasors = (props: Props) => {
     </DashboardBox>
 
     <DashboardBox gridArea="b">
-    
+          
       <div style={{ margin: '9px', marginBottom: '10px'}}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>

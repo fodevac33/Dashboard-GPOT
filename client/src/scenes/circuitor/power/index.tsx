@@ -1,4 +1,4 @@
-import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem } from '@mui/material'
+import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem} from '@mui/material'
 import GraphsPowerL1 from './linea1/GraphsPowerL1';
 import React from 'react';
 

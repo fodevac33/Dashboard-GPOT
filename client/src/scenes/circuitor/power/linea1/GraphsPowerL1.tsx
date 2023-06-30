@@ -8,7 +8,7 @@ import CustomLineChart from '@/components/CustomLineChart';
 type Props = {}
 
   
-const GraphsVCP = (props: Props) => {
+const GraphsPowerL1 = (props: Props) => {
 
 
   const {data} = useGetAcuVoltagesQuery();
@@ -80,4 +80,4 @@ const GraphsVCP = (props: Props) => {
   )
 }
 
-export default GraphsVCP;
+export default GraphsPowerL1;

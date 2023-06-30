@@ -29,12 +29,12 @@ const GraphsVCPL1T = (props: Props) => {
       });
     }, []);
 
-    const [dataRealTimePowerL1, setDataPower] = useState([]);
+    const [dataRealTimeActivePowerL1, setDataPower] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimePower', (dataPower) => {
+      socket.on('dataRealTimeActivePowerL1', (dataPower) => {
         setDataPower(dataPower);
-        console.log("dataRealTimePower:", dataPower);
+        console.log("dataRealTimeActivePower:", dataPower);
       });
     }, []);
 
@@ -76,7 +76,7 @@ const GraphsVCPL1T = (props: Props) => {
             sideTextcolor= '#F29F05'
           />
         <CustomLineChart 
-        chartData={dataRealTimePowerL1}
+        chartData={dataRealTimeActivePowerL1}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
         stroke='#F29F05'/>
