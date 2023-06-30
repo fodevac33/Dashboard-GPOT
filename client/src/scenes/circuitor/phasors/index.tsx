@@ -69,7 +69,7 @@ const GridCircuitorFasores = () => {
         sx = {
           isAboveMediumScreens ?{
           gridTemplateColumns: "repeat(2, minmax(370px, 1fr))",
-          gridTemplateRows: "repeat(10, minmax(57px, 1fr))",
+          gridTemplateRows: "repeat(10, minmax(61px, 1fr))",
           gridTemplateAreas: gridTemplateLargeScreens,
           } : {
             gridAutoColumns: "1fr",

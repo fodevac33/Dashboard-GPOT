@@ -19,19 +19,23 @@ const GraphPhasors = (props: Props) => {
     voltage: item.voltage,
   }));
   
+  const directionsKeys = [0.8, 122.7, 243.6];
   const directions = {
-    0: "0",
-    120: "120",
-    240: "240"
+    0.8: "0.8",
+    122.7: "122.7",
+    243.6: "243.6"
   };
   
+  const directions2Keys = [27, 165.5, 243.6];
   const directions2 = {
-    150: "150",
-    200: "200",
-    300: "300"
+    27: "27",
+    165.5: "165.5",
+    243.6: "243.6"
   };
 
-  const colors = ["#4FDC04", "#3498DB", "#FF0A0A"];
+  
+
+  const colors = ["#FF0A0A","#4FDC04","#3498DB"];
   
   let index = 0;
 
@@ -67,7 +71,7 @@ const GraphPhasors = (props: Props) => {
         polar
         animate={{ duration: 500, onLoad: { duration: 500 } }}
         theme={VictoryTheme.material}
-        domain={{ y: [0, 2] }}
+        domain={{ x: [0, 360], y: [0, 2] }}
       >
         <VictoryPolarAxis
           dependentAxis
@@ -100,10 +104,9 @@ const GraphPhasors = (props: Props) => {
             labels: { fontSize: 10},
             
           }}
-          data={Object.keys(directions).map(Number).map((direction, index) => ({
+          data={directionsKeys.map((direction) => ({
             x: direction,
-            y: 2,
-
+            y: 2
           }))}
           cornerRadius={{ topLeft: 4, topRight: 4 }}
           labels={() => ""}
@@ -118,7 +121,7 @@ const GraphPhasors = (props: Props) => {
             }},
             labels: { fontSize: 10 }
           }}
-          data={Object.keys(directions2).map(Number).map((direction) => ({
+          data={directions2Keys.map((direction) => ({
             x: direction,
             y: 1
           }))}
@@ -132,14 +135,14 @@ const GraphPhasors = (props: Props) => {
 
     <DashboardBox gridArea="b">
     
-      <div style={{ margin: '9px', marginBottom: '30px'}}>
+      <div style={{ margin: '9px', marginBottom: '10px'}}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '30px' }}>
-      <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true}/>
+      <div style={{ margin: '9px', marginBottom: '10px' }}>
+      <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true} title={"Ángulo entre fases"}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '30px' }}>
-      <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}/>
+      <div style={{ margin: '9px', marginBottom: '10px' }}>
+      <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}  title={"Ángulo V-I"}/>
       </div>
     </DashboardBox>
 

@@ -6,6 +6,7 @@ import { VictoryChart, VictoryPolarAxis,VictoryTheme, VictoryBar } from 'victory
 
 
 
+
 type Props = {}
 
   
@@ -19,18 +20,21 @@ const GraphPhasorsT = (props: Props) => {
     voltage: item.voltage,
   }));
   
-  const directions = {
-    0: "0",
-    120: "120",
-    240: "240"
-  };
-  
-  const directions2 = {
-    150: "150",
-    200: "200",
-    300: "300"
-  };
+  const directionsKeys = [30, 25, 20];
+  const valuesdirections = directionsKeys.map(String);
 
+  const directions = directionsKeys.reduce((obj, key, index) => {
+    obj[key] = valuesdirections[index];
+    return obj;
+  }, {} as { [key: number]: string });
+
+  const directions2Keys = [280, 300.2, 230];
+  const valuesdirections2 = ["280", "300.2", "230"];
+
+  const directions2 = directions2Keys.reduce((obj, key, index) => {
+    obj[key] = valuesdirections2[index];
+    return obj;
+  }, {} as { [key: number]: string });
   const colors = ["#4FDC04", "#3498DB", "#FF0A0A"];
   
   let index = 0;
@@ -131,15 +135,15 @@ const GraphPhasorsT = (props: Props) => {
     </DashboardBox>
 
     <DashboardBox gridArea="b">
-    
+          
       <div style={{ margin: '9px', marginBottom: '30px'}}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>
       <div style={{ margin: '9px', marginBottom: '30px' }}>
-      <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true}/>
+      <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true} title={"Ángulo entre fases"}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '30px' }}>
-      <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}/>
+      <div style={{ margin: '9px', marginBottom: '15px' }}>
+      <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}  title={"Ángulo V-I"}/>
       </div>
     </DashboardBox>
 

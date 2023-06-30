@@ -14,19 +14,24 @@ type Props = {
   rows: Array<{ L1: number, L2: number, L3: number, x: string }>,
   rowNames : Array<string>,
   color: boolean,
-  VI : boolean
+  VI : boolean,
+  title?: string
+
 };  
 
 
-const BasicTable = ({rows, rowNames, color, VI}: Props) => {
+const BasicTable = ({rows, rowNames, color, VI, title}: Props) => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 320, 'tr td, tr th': { border: 1}, backgroundColor: "#2d2d34"}} aria-label="simple table">
+      <Table sx={{ minWidth: 320, 'tr td, tr th': { border: 2}, backgroundColor: "#2d2d34"}} aria-label="simple table">
         <TableHead >
           <TableRow  >
-            <TableCell align="center" sx={color === true ?{color:"#4FDC04"}:{color:"#FFFFFF"}}>{rowNames[0]}</TableCell>
-            <TableCell align="center" sx={color === true ?{color: "#3498DB"}:{color:"#FFFFFF"}}>{rowNames[1]}</TableCell>
-            <TableCell align="center" sx={color === true ?{color: "#FF0A0A"}:{color:"#FFFFFF"}}>{rowNames[2]}</TableCell>
+            {title && <TableCell align="center" sx={{color:"#FFFFFF"}} colSpan={rowNames.length + 1}>{title}</TableCell>}
+          </TableRow>
+          <TableRow  >
+            <TableCell align="center" sx={color === true ?{color:"#FF0A0A"}:{color:"#FFFFFF"}}>{rowNames[0]}</TableCell>
+            <TableCell align="center" sx={color === true ?{color: "#4FDC04"}:{color:"#FFFFFF"}}>{rowNames[1]}</TableCell>
+            <TableCell align="center" sx={color === true ?{color: "#3498DB"}:{color:"#FFFFFF"}}>{rowNames[2]}</TableCell>
             {VI && <TableCell align="center" sx={{color:"#FFFFFF"}}></TableCell>}
           </TableRow>
         </TableHead>
