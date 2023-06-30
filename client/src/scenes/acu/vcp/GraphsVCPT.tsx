@@ -15,27 +15,27 @@ const GraphsVCPT = (props: Props) => {
     const [dataRealTimeVoltage, setDataVoltage] = useState([]);
 
     useEffect(() => {
-      socket.on('dataRealTimeVoltage', (dataRealTimeVoltage) => {
-        setDataVoltage(dataRealTimeVoltage);
-        console.log("dataRealTimeVoltage:", dataRealTimeVoltage);
+      socket.on('dataRealTimeVoltage', (dataVoltage) => {
+        setDataVoltage(dataVoltage);
+        console.log("dataRealTimeVoltage:", dataVoltage);
       });
     }, []);
   
     const [dataRealTimeCurrent, setDataCurrent] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
-        setDataCurrent(dataRealTimeCurrent);
-        console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
+      socket.on('dataRealTimeCurrent', (dataCurrent) => {
+        setDataCurrent(dataCurrent);
+        console.log("dataRealTimeCurrent:", dataCurrent);
       });
     }, []);
 
     const [dataRealTimePower, setDataPower] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimePower', (dataRealTimePower) => {
-        setDataPower(dataRealTimePower);
-        console.log("dataRealTimePower:", dataRealTimePower);
+      socket.on('dataRealTimePower', (dataPower) => {
+        setDataPower(dataPower);
+        console.log("dataRealTimePower:", dataPower);
       });
     }, []);
 

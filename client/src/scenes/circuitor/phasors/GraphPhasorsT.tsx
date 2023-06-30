@@ -1,9 +1,8 @@
-import React from 'react'
 import DashboardBox from '@/components/DashboardBox';
-import { useGetAcuVoltagesQuery } from '@/state/api';
 import BasicTable from '@/components/BasicTable';
 import { VictoryChart, VictoryPolarAxis,VictoryTheme, VictoryBar } from 'victory';
-
+import React, { useState, useEffect } from 'react';
+import socket from '@/state/socket';
 
 
 
@@ -12,15 +11,24 @@ type Props = {}
   
 const GraphPhasorsT = (props: Props) => {
 
+  const [dataRealTimePhasors1, setDataPhasors] = useState([]);
+    useEffect(() => {
+      socket.on('dataRealTimePhasors', (dataPhasors) => {
+        setDataPhasors(dataPhasors);
+        console.log("dataRealTimePhasors", dataPhasors);
+      });
+    }, []); 
 
-  const {data} = useGetAcuVoltagesQuery();
-  console.log('data:', data);
-  const chartData = data?.map(item => ({
-    time: item.time,
-    voltage: item.voltage,
-  }));
-  
-  const directionsKeys = [30, 25, 20];
+    const [dataRealTimePhasors2, setDataPhasors2] = useState([]);
+    useEffect(() => {
+      socket.on('dataRealTimePhasors2', (dataPhasors2) => {
+        setDataPhasors2(dataPhasors2);
+        console.log("dataRealTimePhasors", dataPhasors2);
+      });
+    }, []); 
+
+
+  const directionsKeys = dataRealTimePhasors1;
   const valuesdirections = directionsKeys.map(String);
 
   const directions = directionsKeys.reduce((obj, key, index) => {
@@ -28,15 +36,16 @@ const GraphPhasorsT = (props: Props) => {
     return obj;
   }, {} as { [key: number]: string });
 
-  const directions2Keys = [280, 300.2, 230];
-  const valuesdirections2 = ["280", "300.2", "230"];
+  const directions2Keys = dataRealTimePhasors2;
+  const valuesdirections2 = directions2Keys.map(String);
 
   const directions2 = directions2Keys.reduce((obj, key, index) => {
     obj[key] = valuesdirections2[index];
     return obj;
   }, {} as { [key: number]: string });
-  const colors = ["#4FDC04", "#3498DB", "#FF0A0A"];
   
+  const colors = ["#FF0A0A","#4FDC04","#3498DB"];
+
   let index = 0;
 
   function createData(
@@ -104,10 +113,9 @@ const GraphPhasorsT = (props: Props) => {
             labels: { fontSize: 10},
             
           }}
-          data={Object.keys(directions).map(Number).map((direction, index) => ({
+          data={directionsKeys.map((direction) => ({
             x: direction,
-            y: 2,
-
+            y: 2
           }))}
           cornerRadius={{ topLeft: 4, topRight: 4 }}
           labels={() => ""}
@@ -122,7 +130,7 @@ const GraphPhasorsT = (props: Props) => {
             }},
             labels: { fontSize: 10 }
           }}
-          data={Object.keys(directions2).map(Number).map((direction) => ({
+          data={directions2Keys.map((direction) => ({
             x: direction,
             y: 1
           }))}
@@ -136,13 +144,13 @@ const GraphPhasorsT = (props: Props) => {
 
     <DashboardBox gridArea="b">
           
-      <div style={{ margin: '9px', marginBottom: '30px'}}>
+      <div style={{ margin: '9px', marginBottom: '10px'}}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '30px' }}>
+      <div style={{ margin: '9px', marginBottom: '10px' }}>
       <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true} title={"Ángulo entre fases"}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '15px' }}>
+      <div style={{ margin: '9px', marginBottom: '10px' }}>
       <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}  title={"Ángulo V-I"}/>
       </div>
     </DashboardBox>

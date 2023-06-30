@@ -1,8 +1,11 @@
 import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import React from 'react';
 import GraphsVCPL1 from './linea1/GraphsVCPL1';
-import GraphsVCPLT1 from './linea1/GraphsVCPL1';
 import GraphsVCPL1T from './linea1/GraphsVCPL1T';
+import GraphsVCPL2 from './linea2/GraphsVCPL2';
+import GraphsVCPL2T from './linea2/GraphsVCPL2T';
+import GraphsVCPL3 from './linea3/GraphsVCPL3';
+import GraphsVCPL3T from './linea3/GraphsVCPL3T';
 
 
 const gridTemplateLargeScreens = `
@@ -96,7 +99,11 @@ const GridCircuitorVCP = () => {
       >
 
         {tiempo === "Día" && linea === "L1" && <GraphsVCPL1/>}
+        {tiempo === "Día" && linea === "L2" && <GraphsVCPL2/>}
+        {tiempo === "Día" && linea === "L3" && <GraphsVCPL3/>}
         {tiempo === "Tiempo Real" && linea === "L1" && <GraphsVCPL1T/>}
+        {tiempo === "Tiempo Real" && linea === "L2" && <GraphsVCPL2T/>}
+        {tiempo === "Tiempo Real" && linea === "L3" && <GraphsVCPL3T/>}
       
       </Box>
       </> 

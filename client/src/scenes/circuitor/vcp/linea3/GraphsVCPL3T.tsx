@@ -9,30 +9,30 @@ import socket from '@/state/socket';
 type Props = {}
 
   
-const GraphsVCPL1T = (props: Props) => {
+const GraphsVCPL3T = (props: Props) => {
 
-    const [dataRealTimeVoltageL1, setDataVoltage] = useState([]);
+    const [dataRealTimeVoltageL3, setDataVoltage] = useState([]);
 
     useEffect(() => {
-      socket.on('dataRealTimeVoltageL1', (dataVoltage) => {
+      socket.on('dataRealTimeVoltageL3', (dataVoltage) => {
         setDataVoltage(dataVoltage);
         console.log("dataRealTimeVoltage", dataVoltage);
       });
     }, []);
   
-    const [dataRealTimeCurrentL1, setDataCurrent] = useState([]);
+    const [dataRealTimeCurrentL3, setDataCurrent] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimeCurrentL1', (dataCurrent) => {
+      socket.on('dataRealTimeCurrentL3', (dataCurrent) => {
         setDataCurrent(dataCurrent);
         console.log("dataRealTimeCurrent:", dataCurrent);
       });
     }, []);
 
-    const [dataRealTimePowerL1, setDataPower] = useState([]);
+    const [dataRealTimeActivePowerL3, setDataPower] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimePower', (dataPower) => {
+      socket.on('dataRealTimeActivePowerL3', (dataPower) => {
         setDataPower(dataPower);
         console.log("dataRealTimePower:", dataPower);
       });
@@ -42,13 +42,13 @@ const GraphsVCPL1T = (props: Props) => {
     <>
       <DashboardBox gridArea="a">
       <BoxHeader
-            title="Voltaje Circuitor - Linea 1 en Tiempo Real"
-            subtitle="Este grafica muestra los valores de voltaje registrados por el Circuitor en la linea 1"
+            title="Voltaje Circuitor - Linea 3 en Tiempo Real"
+            subtitle="Este grafica muestra los valores de voltaje registrados por el Circuitor en la linea 3"
             sideText="Volts"
             sideTextcolor= '#D93D04'
           />
           <CustomLineChart 
-        chartData={dataRealTimeVoltageL1}
+        chartData={dataRealTimeVoltageL3}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
         stroke='#D93D04'/>
@@ -56,13 +56,13 @@ const GraphsVCPL1T = (props: Props) => {
 
     <DashboardBox gridArea="b">
       <BoxHeader
-            title="Corriente Circuitor - Linea 1 en Tiempo Real"
-            subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor en la linea 1"
+            title="Corriente Circuitor - Linea 3 en Tiempo Real"
+            subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor en la linea 3"
             sideText="Amps"
             sideTextcolor= '#F27405'
           />
       <CustomLineChart 
-        chartData={dataRealTimeCurrentL1}
+        chartData={dataRealTimeCurrentL3}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
         stroke='#F27405'/>
@@ -70,13 +70,13 @@ const GraphsVCPL1T = (props: Props) => {
 
     <DashboardBox gridArea="c">
       <BoxHeader
-            title="Potencia Activa - Linea 1 en Tiempo Real"
-            subtitle="Este grafica muestra los ultimos valores de potencia activa registrados por el Circuitor en la linea 1"
+            title="Potencia Activa - Linea 3 en Tiempo Real"
+            subtitle="Este grafica muestra los ultimos valores de potencia activa registrados por el Circuitor en la linea 3"
             sideText="kWatts"
             sideTextcolor= '#F29F05'
           />
         <CustomLineChart 
-        chartData={dataRealTimePowerL1}
+        chartData={dataRealTimeActivePowerL3}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
         stroke='#F29F05'/>
@@ -86,4 +86,4 @@ const GraphsVCPL1T = (props: Props) => {
   )
 }
 
-export default GraphsVCPL1T;
+export default GraphsVCPL3T;
