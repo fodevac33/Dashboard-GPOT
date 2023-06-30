@@ -75,7 +75,7 @@ const GraphsVCPT = (props: Props) => {
 
     <DashboardBox gridArea="c">
       <BoxHeader
-            title="Potencia ACU"
+            title="Potencia ACU en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de potencia registrados por el ACU"
             sideText="Watts"
             sideTextcolor= '#F29F05'

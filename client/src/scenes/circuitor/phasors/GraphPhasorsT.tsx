@@ -1,9 +1,7 @@
 import React from 'react'
 import DashboardBox from '@/components/DashboardBox';
-import BoxHeader from '@/components/BoxHeader';
 import { useGetAcuVoltagesQuery } from '@/state/api';
 import BasicTable from '@/components/BasicTable';
-import ReactDOM from 'react-dom';
 import { VictoryChart, VictoryPolarAxis,VictoryTheme, VictoryBar } from 'victory';
 
 
@@ -11,7 +9,7 @@ import { VictoryChart, VictoryPolarAxis,VictoryTheme, VictoryBar } from 'victory
 type Props = {}
 
   
-const GraphPhasors = (props: Props) => {
+const GraphPhasorsT = (props: Props) => {
 
 
   const {data} = useGetAcuVoltagesQuery();
@@ -94,7 +92,7 @@ const GraphPhasors = (props: Props) => {
     
         <VictoryBar
           style={{
-            data: { width: 10, fill: () => {
+            data: { width: 5, fill: () => {
               const color = colors[index % colors.length];
               index += 1;
               return color;
@@ -113,7 +111,7 @@ const GraphPhasors = (props: Props) => {
 
         <VictoryBar
           style={{
-            data: { width: 15, fill: () => {
+            data: { width: 7, fill: () => {
               const color = colors[index % colors.length];
               index += 1;
               return color;
@@ -134,13 +132,13 @@ const GraphPhasors = (props: Props) => {
 
     <DashboardBox gridArea="b">
     
-      <div style={{ marginBottom: '30px' }}>
+      <div style={{ margin: '9px', marginBottom: '30px'}}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>
-      <div style={{ marginBottom: '30px' }}>
+      <div style={{ margin: '9px', marginBottom: '30px' }}>
       <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true}/>
       </div>
-      <div style={{ marginBottom: '30px' }}>
+      <div style={{ margin: '9px', marginBottom: '30px' }}>
       <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}/>
       </div>
     </DashboardBox>
@@ -149,4 +147,4 @@ const GraphPhasors = (props: Props) => {
   )
 }
 
-export default GraphPhasors;
+export default GraphPhasorsT;

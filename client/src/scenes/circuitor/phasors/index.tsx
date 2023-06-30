@@ -1,5 +1,6 @@
 import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import GraphPhasors from './GraphPhasors';
+import GraphPhasorsT from './GraphPhasorsT';
 import React from 'react';
 
 
@@ -33,13 +34,17 @@ const gridTemplateSmallScreens= `
 const GridCircuitorFasores = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
   const [tiempo, setTiempo] = React.useState("Día");
-  const [linea, setLinea] = React.useState("L1");
 
     return (   
       <>
 
             <Box paddingRight="2rem " sx={{ display: "flex", justifyContent: "right"}}>
-            <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' }}} >
+            <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' },
+                       "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: '#FF0A0A'}, "& label.Mui-focused": {
+                          color: '#FF0A0A'
+                },
+              }} >
             <InputLabel sx={{color:"white"}}>Tiempo</InputLabel>
             <Select
                 value = {tiempo}
@@ -75,7 +80,8 @@ const GridCircuitorFasores = () => {
         }
       >
 
-         <GraphPhasors/>
+        {tiempo === "Día" && <GraphPhasors/>}
+        {tiempo === "Tiempo Real" && <GraphPhasorsT/>}
       
       </Box>
       </> 

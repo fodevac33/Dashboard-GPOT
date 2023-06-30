@@ -21,7 +21,7 @@ type Props = {
 const BasicTable = ({rows, rowNames, color, VI}: Props) => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 370, 'tr td, tr th': { border: 1}, backgroundColor: "#2d2d34"}} aria-label="simple table">
+      <Table sx={{ minWidth: 320, 'tr td, tr th': { border: 1}, backgroundColor: "#2d2d34"}} aria-label="simple table">
         <TableHead >
           <TableRow  >
             <TableCell align="center" sx={color === true ?{color:"#4FDC04"}:{color:"#FFFFFF"}}>{rowNames[0]}</TableCell>
