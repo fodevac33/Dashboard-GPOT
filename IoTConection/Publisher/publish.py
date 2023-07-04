@@ -30,25 +30,22 @@ while True:
             "time": num, 
             "power": power
         },
-
-        "energies": {
-            "imported": {
-                "time": num,
-                "imported": imported
-            },
-            "exported": {
-                "time": num,
-                "exported": exported
-            },
-            "net": {
-                "time": num,
-                "net": net
-            },
-            "total": {
-                "time": num,
-                "total": total
-            },
-        }
+        "imported": {
+            "time": num,
+            "imported": imported
+        },
+        "exported": {
+            "time": num,
+            "exported": exported
+        },
+        "net": {
+            "time": num,
+            "net": net
+        },
+        "total": {
+            "time": num,
+            "total": total
+        },
     })
 
     mqtt_connection.publish(

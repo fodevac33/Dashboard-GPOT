@@ -23,14 +23,16 @@ function acuSocketController(io: Server) {
   });
 
   acu.on("message", function (topic: string, payload: object) {
-    console.log("Message received on:", topic);
-    const dataRealTime= JSON.parse(payload.toString()) as AcuData;
+    if (topic === Topics.DC_DATA) {
+      console.log("Message received on:", topic);
+      const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
-    preventArrayDataOverflow(100, AcuIotData);
+      preventArrayDataOverflow(100, AcuIotData);
 
-    appendAcuDataToRealTimeArray(AcuIotData, dataRealTime);
+      appendAcuDataToRealTimeArray(AcuIotData, dataRealTime);
 
-    emitRealTimeArrays(io, AcuIotData)
+      emitRealTimeArrays(io, AcuIotData)
+    }
   });
 }
 

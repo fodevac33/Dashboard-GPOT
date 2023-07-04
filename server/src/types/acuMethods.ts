@@ -14,10 +14,10 @@ function appendAcuDataToRealTimeArray(arrayObject: acuTypes.IotAcuRealtimeArrayO
     arrayObject.arrayCurrentDataRealTime.push(data.current);
     arrayObject.arrayVoltageDataRealTime.push(data.voltage);
     arrayObject.arrayPowerDataRealTime.push(data.power);
-    arrayObject.arrayImportedDataRealTime.push(data.energies.imported);
-    arrayObject.arrayExportedDataRealTime.push(data.energies.exported);
-    arrayObject.arrayNetDataRealTime.push(data.energies.net);
-    arrayObject.arrayTotalDataRealTime.push(data.energies.total);
+    arrayObject.arrayImportedDataRealTime.push(data.imported);
+    arrayObject.arrayExportedDataRealTime.push(data.exported);
+    arrayObject.arrayNetDataRealTime.push(data.net);
+    arrayObject.arrayTotalDataRealTime.push(data.total);
 }
 
 function emitRealTimeArrays(io: Server, arrayObject: acuTypes.IotAcuRealtimeArrayObject) {

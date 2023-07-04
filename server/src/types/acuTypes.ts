@@ -1,62 +1,29 @@
 // Types that model the data recieved from the ACU Energy
 
-interface Voltage {
+interface DataPoint {
   time: number;
-  voltage: number;
+  value: number;
 }
 
-interface Current {
-  time: number;
-  current: number;
-}
-
-interface Power {
-  time: number;
-  power: number;
-}
-
-interface ImportedEnergy {
-  time: number;
-  imported: number;
-}
-
-interface ExportedEnergy {
-  time: number;
-  exported: number;
-}
-
-interface NetEnergy {
-  time: number;
-  net: number;
-}
-
-interface TotalEnergy {
-  time: number;
-  total: number;
-}
-
-interface Energies {
-  imported: ImportedEnergy;
-  exported: ExportedEnergy;
-  net: NetEnergy;
-  total: TotalEnergy;
-}
 
 interface AcuData {
-  voltage: Voltage;
-  current: Current;
-  power: Power;
-  energies: Energies;
+  voltage: DataPoint;
+  current: DataPoint;
+  power: DataPoint;
+  imported: DataPoint;
+  exported: DataPoint;
+  net: DataPoint;
+  total: DataPoint;
 }
 
 interface IotAcuRealtimeArrayObject {
-  arrayCurrentDataRealTime: Current[];
-  arrayVoltageDataRealTime: Voltage[];
-  arrayPowerDataRealTime: Power[];
-  arrayImportedDataRealTime: ImportedEnergy[];
-  arrayExportedDataRealTime: ExportedEnergy[];
-  arrayNetDataRealTime: NetEnergy[];
-  arrayTotalDataRealTime: TotalEnergy[];
+  arrayCurrentDataRealTime: DataPoint[];
+  arrayVoltageDataRealTime: DataPoint[];
+  arrayPowerDataRealTime: DataPoint[];
+  arrayImportedDataRealTime: DataPoint[];
+  arrayExportedDataRealTime: DataPoint[];
+  arrayNetDataRealTime: DataPoint[];
+  arrayTotalDataRealTime: DataPoint[];
 }
 
 enum SocketEventEmmiters {
