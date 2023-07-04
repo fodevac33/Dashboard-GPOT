@@ -17,8 +17,8 @@ interface AcuData {
 }
 
 interface IotAcuRealtimeArrayObject {
-  arrayCurrentDataRealTime: DataPoint[];
   arrayVoltageDataRealTime: DataPoint[];
+  arrayCurrentDataRealTime: DataPoint[];
   arrayPowerDataRealTime: DataPoint[];
   arrayImportedDataRealTime: DataPoint[];
   arrayExportedDataRealTime: DataPoint[];

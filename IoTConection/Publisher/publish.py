@@ -18,33 +18,33 @@ while True:
     message = json.dumps({
         "voltage":{
             "time": num, 
-            "voltage": voltage
+            "value": voltage
         }, 
 
         "current":{ 
             "time": num, 
-            "current": current
+            "value": current
         },
 
         "power":{ 
             "time": num, 
-            "power": power
+            "value": power
         },
         "imported": {
             "time": num,
-            "imported": imported
+            "value": imported
         },
         "exported": {
             "time": num,
-            "exported": exported
+            "value": exported
         },
         "net": {
             "time": num,
-            "net": net
+            "value": net
         },
         "total": {
             "time": num,
-            "total": total
+            "value": total
         },
     })
 
