@@ -53,7 +53,7 @@ const GraphsVCPT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeVoltage}
           xAsisDatakey='time'
-          yAsisDatakey='voltage'
+          yAsisDatakey='value'
           stroke = '#D93D04'
           animation = {false}/>
     </DashboardBox>
@@ -68,7 +68,7 @@ const GraphsVCPT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeCurrent}
           xAsisDatakey='time'
-          yAsisDatakey='current'
+          yAsisDatakey='value'
           stroke = '#F27405'
           animation = {false}/>
       </DashboardBox>
@@ -83,7 +83,7 @@ const GraphsVCPT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimePower}
           xAsisDatakey='time'
-          yAsisDatakey='power'
+          yAsisDatakey='value'
           stroke = '#F29F05'
           animation = {false}/>
       </DashboardBox>

@@ -50,7 +50,7 @@ const GraphsVCPL2T = (props: Props) => {
           <CustomLineChart 
         chartData={dataRealTimeVoltageL2}
         xAsisDatakey='time'
-        yAsisDatakey='voltage'
+        yAsisDatakey='value'
         stroke='#D93D04'/>
     </DashboardBox>
 
@@ -64,7 +64,7 @@ const GraphsVCPL2T = (props: Props) => {
       <CustomLineChart 
         chartData={dataRealTimeCurrentL2}
         xAsisDatakey='time'
-        yAsisDatakey='voltage'
+        yAsisDatakey='value'
         stroke='#F27405'/>
       </DashboardBox>
 
@@ -78,7 +78,7 @@ const GraphsVCPL2T = (props: Props) => {
         <CustomLineChart 
         chartData={dataRealTimeActivePowerL2}
         xAsisDatakey='time'
-        yAsisDatakey='voltage'
+        yAsisDatakey='value'
         stroke='#F29F05'/>
       </DashboardBox>
 
