@@ -1,7 +1,7 @@
 import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
-import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acuTypes.js";
-import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acuMethods.js";
+import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acu/acuTypes.js";
+import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acu/acuMethods.js";
 
 let AcuIotData: IotAcuRealtimeArrayObject = {
   arrayVoltageDataRealTime: [],
@@ -25,6 +25,7 @@ function acuSocketController(io: Server) {
   acu.on("message", function (topic: string, payload: object) {
     if (topic === Topics.DC_DATA) {
       console.log("Message received on:", topic);
+
       const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
       preventArrayDataOverflow(100, AcuIotData);

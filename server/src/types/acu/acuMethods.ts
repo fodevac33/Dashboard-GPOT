@@ -26,7 +26,7 @@ function emitRealTimeArrays(io: Server, arrayObject: acuTypes.IotAcuRealtimeArra
   io.emit(acuTypes.SocketEventEmmiters.ImportedEnergy, arrayObject.arrayImportedDataRealTime);
   io.emit(acuTypes.SocketEventEmmiters.ExportedEnergy, arrayObject.arrayExportedDataRealTime);
   io.emit(acuTypes.SocketEventEmmiters.NetEnergy, arrayObject.arrayNetDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.TimeTotalEnergy, arrayObject.arrayTotalDataRealTime);
+  io.emit(acuTypes.SocketEventEmmiters.TotalEnergy, arrayObject.arrayTotalDataRealTime);
 }
 
 export {preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays}

@@ -5,7 +5,6 @@ interface DataPoint {
   value: number;
 }
 
-
 interface AcuData {
   voltage: DataPoint;
   current: DataPoint;
@@ -33,7 +32,7 @@ enum SocketEventEmmiters {
   ImportedEnergy = "dataRealTimeImportedEnergy",
   ExportedEnergy = "dataRealTimeExportedEnergy",
   NetEnergy = "dataRealTimeNetEnergy",
-  TimeTotalEnergy = "dataRealTimeTotalEnergy"
+  TotalEnergy = "dataRealTimeTotalEnergy"
 }
 
 enum Topics {
