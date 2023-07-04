@@ -11,7 +11,6 @@ let AcuIotData: IotAcuRealtimeArrayObject = {
   arrayExportedDataRealTime: [],
   arrayNetDataRealTime: [],
   arrayTotalDataRealTime: [],
-
 }
 
 

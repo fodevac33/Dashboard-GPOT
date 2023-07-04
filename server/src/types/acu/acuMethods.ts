@@ -16,17 +16,16 @@ function appendAcuDataToRealTimeArray(arrayObject: acuTypes.IotAcuRealtimeArrayO
 
   arrayKeys.forEach((key, index) => {
     arrayObject[key as keyof acuTypes.IotAcuRealtimeArrayObject].push(data[dataKeys[index] as keyof acuTypes.AcuData]);
-  })
+  });
 }
 
 function emitRealTimeArrays(io: Server, arrayObject: acuTypes.IotAcuRealtimeArrayObject) {
-  io.emit(acuTypes.SocketEventEmmiters.Voltage, arrayObject.arrayVoltageDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.Current, arrayObject.arrayCurrentDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.Power, arrayObject.arrayPowerDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.ImportedEnergy, arrayObject.arrayImportedDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.ExportedEnergy, arrayObject.arrayExportedDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.NetEnergy, arrayObject.arrayNetDataRealTime);
-  io.emit(acuTypes.SocketEventEmmiters.TotalEnergy, arrayObject.arrayTotalDataRealTime);
+  const arrayKeys = Object.keys(arrayObject);
+  const enumValues = Object.values(acuTypes.SocketEventEmmiters);
+
+  arrayKeys.forEach((key, index) => {
+    io.emit(enumValues[index], arrayObject[key as keyof acuTypes.IotAcuRealtimeArrayObject]);
+  });
 }
 
 export {preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays}
