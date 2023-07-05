@@ -1,31 +1,31 @@
-import * as acuTypes from "./acuTypes.js";
+import { IotAcuRealtimeArrayObject, AcuSocketEventEmmiters, AcuData} from "./acuTypes.js";
 import { Server } from "socket.io";
 
-function preventArrayDataOverflow(max_data: number, arrayObject: acuTypes.IotAcuRealtimeArrayObject) {
+function preventArrayDataOverflow(max_data: number, arrayObject: IotAcuRealtimeArrayObject) {
   for (const key in arrayObject) {
-    if (arrayObject[key as keyof acuTypes.IotAcuRealtimeArrayObject].length > max_data) {
-      arrayObject[key as keyof acuTypes.IotAcuRealtimeArrayObject].shift();
+    if (arrayObject[key as keyof IotAcuRealtimeArrayObject].length > max_data) {
+      arrayObject[key as keyof IotAcuRealtimeArrayObject].shift();
     } 
   }
 }
 
 
-function appendAcuDataToRealTimeArray(arrayObject: acuTypes.IotAcuRealtimeArrayObject, data: acuTypes.AcuData) {
+function appendAcuDataToRealTimeArray(arrayObject: IotAcuRealtimeArrayObject, data: AcuData) {
   const arrayKeys = Object.keys(arrayObject);
   const dataKeys = Object.keys(data);
 
   arrayKeys.forEach((key, index) => {
-    arrayObject[key as keyof acuTypes.IotAcuRealtimeArrayObject].push(data[dataKeys[index] as keyof acuTypes.AcuData]);
+    arrayObject[key as keyof IotAcuRealtimeArrayObject].push(data[dataKeys[index] as keyof AcuData]);
   });
 }
 
 
-function emitRealTimeArrays(io: Server, arrayObject: acuTypes.IotAcuRealtimeArrayObject) {
+function emitRealTimeArrays(io: Server, arrayObject: IotAcuRealtimeArrayObject) {
   const arrayKeys = Object.keys(arrayObject);
-  const enumValues = Object.values(acuTypes.SocketEventEmmiters);
+  const enumValues = Object.values(AcuSocketEventEmmiters);
 
   arrayKeys.forEach((key, index) => {
-    io.emit(enumValues[index], arrayObject[key as keyof acuTypes.IotAcuRealtimeArrayObject]);
+    io.emit(enumValues[index], arrayObject[key as keyof IotAcuRealtimeArrayObject]);
   });
 }
 
