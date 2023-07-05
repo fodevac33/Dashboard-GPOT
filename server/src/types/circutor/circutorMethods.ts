@@ -1,5 +1,5 @@
 import { DataPoint } from "../generic.js";
-import { RecievedData, CircutorData, emptyCircutorData } from "./circutorTypes.js";
+import { RecievedData, CircutorData, emptyCircutorData, IotCircutorRealtimeArrays } from "./circutorTypes.js";
 
 
 let time = 0;
@@ -40,4 +40,20 @@ function rawDataToRealData(raw: RecievedData): CircutorData {
   return realData;
 }
 
-export { rawDataToRealData }
+function appendCircutorDataToRealtimeArray(arrays: IotCircutorRealtimeArrays, data: CircutorData, max_data: number) {
+  const arrayKeys = Object.keys(arrays);
+  const dataKeys = Object.keys(data);
+
+  arrayKeys.forEach((key, index) => {
+    let currentArray = arrays[key as keyof IotCircutorRealtimeArrays];
+    let currentData = data[dataKeys[index] as keyof CircutorData];
+
+    if (currentArray.length > max_data) {
+      currentArray.shift();
+    }
+    currentArray.push(currentData);
+  });
+}
+
+
+export { rawDataToRealData, appendCircutorDataToRealtimeArray }

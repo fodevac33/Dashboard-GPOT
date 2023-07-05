@@ -1,8 +1,27 @@
 import { Server } from "socket.io";
 import circutor from "../../devices/circutor/CircutorDevice.js";
 import { Topics } from "../../types/generic.js";
-import { RecievedData } from "../../types/circutor/circutorTypes.js";
-import { rawDataToRealData } from "../../types/circutor/circutorMethods.js";
+import { IotCircutorRealtimeArrays, RecievedData } from "../../types/circutor/circutorTypes.js";
+import { rawDataToRealData, appendCircutorDataToRealtimeArray } from "../../types/circutor/circutorMethods.js";
+
+
+let CircutorIotData: IotCircutorRealtimeArrays = {
+  arrayL1_VOLTAGE: [],
+  arrayL2_VOLTAGE: [],
+  arrayL3_VOLTAGE: [],
+
+  arrayL1_CURRENT: [],
+  arrayL2_CURRENT: [],
+  arrayL3_CURRENT: [],
+
+  arrayL1_ACTIVE_POWER: [],
+  arrayL2_ACTIVE_POWER: [],
+  arrayL3_ACTIVE_POWER: [],
+
+  arrayANGLE_V1_V2: [],
+  arrayANGLE_V2_V3: [],
+  arrayANGLE_V3_V1: [],
+}
 
 
 function circutorSocketController(io: Server) {
@@ -18,9 +37,11 @@ function circutorSocketController(io: Server) {
 
       const dataRealTime= JSON.parse(payload.toString()) as RecievedData;
 
-      let realData = rawDataToRealData(dataRealTime);
+      const realData = rawDataToRealData(dataRealTime);
 
-      console.log(realData);
+      appendCircutorDataToRealtimeArray(CircutorIotData, realData, 100);
+
+      console.log(CircutorIotData);
     }
   });
 }

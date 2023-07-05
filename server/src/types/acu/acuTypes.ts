@@ -11,7 +11,7 @@ interface AcuData {
   total: DataPoint;
 }
 
-interface IotAcuRealtimeArrayObject {
+interface IotAcuRealtimeArrays {
   arrayVoltage: DataPoint[];
   arrayCurrent: DataPoint[];
   arrayPower: DataPoint[];
@@ -32,4 +32,4 @@ enum AcuSocketEventEmmiters {
 }
 
 
-export { AcuData, IotAcuRealtimeArrayObject, AcuSocketEventEmmiters };
+export { AcuData, IotAcuRealtimeArrays, AcuSocketEventEmmiters };

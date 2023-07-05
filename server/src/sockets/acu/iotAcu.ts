@@ -1,10 +1,10 @@
 import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
 import { Topics } from "../../types/generic.js";
-import { AcuData,  IotAcuRealtimeArrayObject} from "../../types/acu/acuTypes.js";
+import { AcuData,  IotAcuRealtimeArrays} from "../../types/acu/acuTypes.js";
 import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acu/acuMethods.js";
 
-let AcuIotData: IotAcuRealtimeArrayObject = {
+let AcuIotData: IotAcuRealtimeArrays = {
   arrayVoltage: [],
   arrayCurrent: [],
   arrayPower: [],
