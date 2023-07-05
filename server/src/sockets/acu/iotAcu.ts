@@ -1,16 +1,17 @@
 import { Server } from "socket.io";
 import acu from "../../devices/acu/AcuDevice.js";
-import { AcuData, Topics, IotAcuRealtimeArrayObject} from "../../types/acu/acuTypes.js";
+import { Topics } from "../../types/generic.js";
+import { AcuData,  IotAcuRealtimeArrayObject} from "../../types/acu/acuTypes.js";
 import { preventArrayDataOverflow, appendAcuDataToRealTimeArray, emitRealTimeArrays} from "../../types/acu/acuMethods.js";
 
 let AcuIotData: IotAcuRealtimeArrayObject = {
-  arrayVoltageDataRealTime: [],
-  arrayCurrentDataRealTime: [],
-  arrayPowerDataRealTime: [],
-  arrayImportedDataRealTime: [],
-  arrayExportedDataRealTime: [],
-  arrayNetDataRealTime: [],
-  arrayTotalDataRealTime: [],
+  arrayVoltage: [],
+  arrayCurrent: [],
+  arrayPower: [],
+  arrayImported: [],
+  arrayExported: [],
+  arrayNet: [],
+  arrayTotal: [],
 }
 
 
@@ -27,7 +28,7 @@ function acuSocketController(io: Server) {
 
       const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
-      preventArrayDataOverflow(100, AcuIotData);
+      preventArrayDataOverflow(300, AcuIotData);
 
       appendAcuDataToRealTimeArray(AcuIotData, dataRealTime);
 

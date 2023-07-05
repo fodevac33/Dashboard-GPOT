@@ -19,6 +19,7 @@ function appendAcuDataToRealTimeArray(arrayObject: acuTypes.IotAcuRealtimeArrayO
   });
 }
 
+
 function emitRealTimeArrays(io: Server, arrayObject: acuTypes.IotAcuRealtimeArrayObject) {
   const arrayKeys = Object.keys(arrayObject);
   const enumValues = Object.values(acuTypes.SocketEventEmmiters);

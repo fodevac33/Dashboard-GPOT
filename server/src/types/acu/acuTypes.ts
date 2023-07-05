@@ -1,9 +1,5 @@
 // Types that model the data recieved from the ACU Energy
-
-interface DataPoint {
-  time: number;
-  value: number;
-}
+import { DataPoint } from "../generic.js";
 
 interface AcuData {
   voltage: DataPoint;
@@ -16,13 +12,13 @@ interface AcuData {
 }
 
 interface IotAcuRealtimeArrayObject {
-  arrayVoltageDataRealTime: DataPoint[];
-  arrayCurrentDataRealTime: DataPoint[];
-  arrayPowerDataRealTime: DataPoint[];
-  arrayImportedDataRealTime: DataPoint[];
-  arrayExportedDataRealTime: DataPoint[];
-  arrayNetDataRealTime: DataPoint[];
-  arrayTotalDataRealTime: DataPoint[];
+  arrayVoltage: DataPoint[];
+  arrayCurrent: DataPoint[];
+  arrayPower: DataPoint[];
+  arrayImported: DataPoint[];
+  arrayExported: DataPoint[];
+  arrayNet: DataPoint[];
+  arrayTotal: DataPoint[];
 }
 
 enum SocketEventEmmiters {
@@ -35,8 +31,5 @@ enum SocketEventEmmiters {
   TotalEnergy = "dataRealTimeTotalEnergy"
 }
 
-enum Topics {
-  DC_DATA = "DC_DATA",
-}
 
-export { AcuData, IotAcuRealtimeArrayObject, Topics, SocketEventEmmiters };
+export { AcuData, IotAcuRealtimeArrayObject, SocketEventEmmiters };
