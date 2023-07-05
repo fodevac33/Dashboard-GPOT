@@ -1,5 +1,6 @@
 import { DataPoint } from "../generic.js";
-import { RecievedData, CircutorData, emptyCircutorData, IotCircutorRealtimeArrays } from "./circutorTypes.js";
+import { RecievedData, CircutorData, emptyCircutorData, IotCircutorRealtimeArrays, CircutorSocketEventEmitters } from "./circutorTypes.js";
+import { Server } from "socket.io";
 
 
 let time = 0;
@@ -56,4 +57,12 @@ function appendCircutorDataToRealtimeArray(arrays: IotCircutorRealtimeArrays, da
 }
 
 
-export { rawDataToRealData, appendCircutorDataToRealtimeArray }
+function emitRealTimeArrays(io: Server, arrayObject: IotCircutorRealtimeArrays) {
+  const arrayKeys = Object.keys(arrayObject);
+  const enumValues = Object.values(CircutorSocketEventEmitters);
+
+  arrayKeys.forEach((key, index) => {
+    io.emit(enumValues[index], arrayObject[key as keyof IotCircutorRealtimeArrays]);
+  });
+}
+export { rawDataToRealData, appendCircutorDataToRealtimeArray, emitRealTimeArrays}

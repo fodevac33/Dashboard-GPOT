@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 import circutor from "../../devices/circutor/CircutorDevice.js";
 import { Topics } from "../../types/generic.js";
 import { IotCircutorRealtimeArrays, RecievedData } from "../../types/circutor/circutorTypes.js";
-import { rawDataToRealData, appendCircutorDataToRealtimeArray } from "../../types/circutor/circutorMethods.js";
+import { rawDataToRealData, appendCircutorDataToRealtimeArray, emitRealTimeArrays} from "../../types/circutor/circutorMethods.js";
 
 
 let CircutorIotData: IotCircutorRealtimeArrays = {
@@ -40,6 +40,8 @@ function circutorSocketController(io: Server) {
       const realData = rawDataToRealData(dataRealTime);
 
       appendCircutorDataToRealtimeArray(CircutorIotData, realData, 100);
+
+      emitRealTimeArrays(io, CircutorIotData);
 
       console.log(CircutorIotData);
     }
