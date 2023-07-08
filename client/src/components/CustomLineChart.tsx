@@ -28,7 +28,7 @@ const CustomLineChart = ({chartData, xAsisDatakey, yAsisDatakey, stroke, animati
             <XAxis dataKey= {xAsisDatakey}/>
             <YAxis/>
             <Tooltip/>
-            <Line type="monotone" dataKey={yAsisDatakey} isAnimationActive={animation} stroke={stroke} dot={false}/>
+            <Line type="monotone" dataKey={yAsisDatakey} isAnimationActive={false} stroke={stroke} dot={false}/>
             </LineChart>
         </ResponsiveContainer>
       </>

@@ -18,7 +18,7 @@ const GraphPhasorsT = (props: Props) => {
 
   const [dataRealTimePhasors1, setDataPhasors] = useState<DataPhasor[]>([]);;
     useEffect(() => {
-      socket.on('dataRealTimePhasors', (dataPhasors) => {
+      socket.on('dataRealTimePhasors1', (dataPhasors) => {
         setDataPhasors(dataPhasors);
         console.log("dataRealTimePhasors", dataPhasors);
       });
