@@ -1,11 +1,6 @@
-import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem } from '@mui/material'
+import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem} from '@mui/material'
+import GraphsPowerL1 from './linea1/GraphsPowerL1';
 import React from 'react';
-import GraphsVCPL1 from './linea1/GraphsVCPL1';
-import GraphsVCPL1T from './linea1/GraphsVCPL1T';
-import GraphsVCPL2 from './linea2/GraphsVCPL2';
-import GraphsVCPL2T from './linea2/GraphsVCPL2T';
-import GraphsVCPL3 from './linea3/GraphsVCPL3';
-import GraphsVCPL3T from './linea3/GraphsVCPL3T';
 
 
 const gridTemplateLargeScreens = `
@@ -13,10 +8,10 @@ const gridTemplateLargeScreens = `
     "a b"
     "a b"
     "a b"
-    "c c"
-    "c c"
-    "c c"
-    "c c"
+    "c d"
+    "c d"
+    "c d"
+    "c d"
 `;
 
 const gridTemplateSmallScreens= `
@@ -35,7 +30,7 @@ const gridTemplateSmallScreens= `
   "c"
 `;
 
-const GridCircuitorVCP = () => {
+const GridCircuitorPower = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
   const [tiempo, setTiempo] = React.useState("Día");
   const [linea, setLinea] = React.useState("L1");
@@ -44,7 +39,12 @@ const GridCircuitorVCP = () => {
       <>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box paddingLeft="1rem " sx={{ display: "flex", justifyContent: "flex-end"}}>
-            <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' }}} >
+        <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' },
+         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: '#98D936'}, "& label.Mui-focused": {
+            color: '#98D936'
+          },
+        }} >
             <InputLabel sx={{color:"white"}}>Linea</InputLabel>
             <Select
                 value = {linea}
@@ -61,7 +61,12 @@ const GridCircuitorVCP = () => {
         </Box>
 
         <Box paddingRight="1rem " sx={{ display: "block", justifyContent: "flex-start"}}>
-            <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' }}} >
+        <FormControl sx={{ "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: 'white' },
+         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: '#98D936'}, "& label.Mui-focused": {
+            color: '#98D936'
+          },
+        }} >
             <InputLabel sx={{color:"white"}}>Tiempo</InputLabel>
             <Select
                 value = {tiempo}
@@ -98,12 +103,7 @@ const GridCircuitorVCP = () => {
         }
       >
 
-        {tiempo === "Día" && linea === "L1" && <GraphsVCPL1/>}
-        {tiempo === "Día" && linea === "L2" && <GraphsVCPL2/>}
-        {tiempo === "Día" && linea === "L3" && <GraphsVCPL3/>}
-        {tiempo === "Tiempo Real" && linea === "L1" && <GraphsVCPL1T/>}
-        {tiempo === "Tiempo Real" && linea === "L2" && <GraphsVCPL2T/>}
-        {tiempo === "Tiempo Real" && linea === "L3" && <GraphsVCPL3T/>}
+        {tiempo === "Día" && linea === "L1" && <GraphsPowerL1/>}
       
       </Box>
       </> 
@@ -111,4 +111,4 @@ const GridCircuitorVCP = () => {
 
 }
 
-export default GridCircuitorVCP;
+export default GridCircuitorPower;

@@ -8,7 +8,7 @@ import CustomLineChart from '@/components/CustomLineChart';
 type Props = {}
 
   
-const GraphsVCPL1 = (props: Props) => {
+const GraphsVCPL3 = (props: Props) => {
 
 
   const {data} = useGetAcuVoltagesQuery();
@@ -22,8 +22,8 @@ const GraphsVCPL1 = (props: Props) => {
     <>
       <DashboardBox gridArea="a">
       <BoxHeader
-            title="Voltaje Circuitor - Linea 1"
-            subtitle="Este grafica muestra los valores de voltaje registrados por el Circuitor en la linea 1"
+            title="Voltaje Circuitor - Linea 3"
+            subtitle="Este grafica muestra los valores de voltaje registrados por el Circuitor en la linea 3"
             sideText="Volts"
             sideTextcolor= '#D93D04'
           />
@@ -36,8 +36,8 @@ const GraphsVCPL1 = (props: Props) => {
 
     <DashboardBox gridArea="b">
       <BoxHeader
-            title="Corriente Circuitor - Linea 1"
-            subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor en la linea 1"
+            title="Corriente Circuitor - Linea 3"
+            subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor en la linea 3"
             sideText="Amps"
             sideTextcolor= '#F27405'
           />
@@ -50,8 +50,8 @@ const GraphsVCPL1 = (props: Props) => {
 
     <DashboardBox gridArea="c">
       <BoxHeader
-            title="Potencia Activa - Linea 1"
-            subtitle="Este grafica muestra los ultimos valores de potencia activa registrados por el Circuitor en la linea 1"
+            title="Potencia Activa - Linea 3"
+            subtitle="Este grafica muestra los ultimos valores de potencia activa registrados por el Circuitor en la linea 3"
             sideText="kWatts"
             sideTextcolor= '#F29F05'
           />
@@ -66,4 +66,4 @@ const GraphsVCPL1 = (props: Props) => {
   )
 }
 
-export default GraphsVCPL1;
+export default GraphsVCPL3;

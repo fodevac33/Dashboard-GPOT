@@ -58,7 +58,7 @@ const GraphsEnergiesT = (props: Props) => {
       <CustomLineChart 
         chartData={dataRealTimeImportedEnergy}
         xAsisDatakey='time'
-        yAsisDatakey='imported'
+        yAsisDatakey='value'
         stroke = '#98D936'
         animation = {false}/>
         
@@ -74,7 +74,7 @@ const GraphsEnergiesT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeExportedEnergy}
           xAsisDatakey='time'
-          yAsisDatakey='exported'
+          yAsisDatakey='value'
           stroke = '#4ABF2A'
           animation = {false}/>
          
@@ -90,7 +90,7 @@ const GraphsEnergiesT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeNetEnergy}
           xAsisDatakey='time'
-          yAsisDatakey='net'
+          yAsisDatakey='value'
           stroke = '#D7F205'
           animation = {false}/>
            
@@ -106,7 +106,7 @@ const GraphsEnergiesT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeTotalEnergy}
           xAsisDatakey='time'
-          yAsisDatakey='total'
+          yAsisDatakey='value'
           stroke = '#84D98A'
           animation = {false}/>
            

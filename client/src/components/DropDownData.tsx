@@ -61,7 +61,12 @@ export const DropDownItem: DropDownItem[] = [
       },
       {
         title: "Fasores",
-        path: '/circuitor/fasores',
+        path: '/circuitor/phasors',
+        icon: <SpeedIcon/>
+      },
+      {
+        title: "Potencias",
+        path: '/circuitor/power',
         icon: <SpeedIcon/>
       }
     ]

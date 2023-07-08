@@ -15,27 +15,27 @@ const GraphsVCPT = (props: Props) => {
     const [dataRealTimeVoltage, setDataVoltage] = useState([]);
 
     useEffect(() => {
-      socket.on('dataRealTimeVoltage', (dataRealTimeVoltage) => {
-        setDataVoltage(dataRealTimeVoltage);
-        console.log("dataRealTimeVoltage:", dataRealTimeVoltage);
+      socket.on('dataRealTimeVoltage', (dataVoltage) => {
+        setDataVoltage(dataVoltage);
+        console.log("dataRealTimeVoltage:", dataVoltage);
       });
     }, []);
   
     const [dataRealTimeCurrent, setDataCurrent] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
-        setDataCurrent(dataRealTimeCurrent);
-        console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
+      socket.on('dataRealTimeCurrent', (dataCurrent) => {
+        setDataCurrent(dataCurrent);
+        console.log("dataRealTimeCurrent:", dataCurrent);
       });
     }, []);
 
     const [dataRealTimePower, setDataPower] = useState([]);
   
     useEffect(() => {
-      socket.on('dataRealTimePower', (dataRealTimePower) => {
-        setDataPower(dataRealTimePower);
-        console.log("dataRealTimePower:", dataRealTimePower);
+      socket.on('dataRealTimePower', (dataPower) => {
+        setDataPower(dataPower);
+        console.log("dataRealTimePower:", dataPower);
       });
     }, []);
 
@@ -53,7 +53,7 @@ const GraphsVCPT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeVoltage}
           xAsisDatakey='time'
-          yAsisDatakey='voltage'
+          yAsisDatakey='value'
           stroke = '#D93D04'
           animation = {false}/>
     </DashboardBox>
@@ -68,14 +68,14 @@ const GraphsVCPT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimeCurrent}
           xAsisDatakey='time'
-          yAsisDatakey='current'
+          yAsisDatakey='value'
           stroke = '#F27405'
           animation = {false}/>
       </DashboardBox>
 
     <DashboardBox gridArea="c">
       <BoxHeader
-            title="Potencia ACU"
+            title="Potencia ACU en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de potencia registrados por el ACU"
             sideText="Watts"
             sideTextcolor= '#F29F05'
@@ -83,7 +83,7 @@ const GraphsVCPT = (props: Props) => {
       <CustomLineChart 
           chartData={dataRealTimePower}
           xAsisDatakey='time'
-          yAsisDatakey='power'
+          yAsisDatakey='value'
           stroke = '#F29F05'
           animation = {false}/>
       </DashboardBox>

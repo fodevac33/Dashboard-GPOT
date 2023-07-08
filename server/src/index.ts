@@ -7,7 +7,10 @@ import helmet from "helmet";
 import morgan from "morgan";
 import acuvoltageRoutes from "./routes/acu/acuvoltage.js";
 import { createServer } from "http";
+
 import acuSocketController from "./sockets/acu/iotAcu.js";
+import circutorSocketController from "./sockets/circutor/iotCircutor.js";
+
 import { Server } from "socket.io";
 
 /* CONFIGURATIONS */
@@ -42,5 +45,6 @@ io.on("connection", () => {
   console.log("Conection detected");
 });
 
-acuSocketController(io);
+circutorSocketController(io);
+// acuSocketController(io);
 

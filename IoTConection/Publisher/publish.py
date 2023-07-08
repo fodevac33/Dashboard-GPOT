@@ -18,37 +18,34 @@ while True:
     message = json.dumps({
         "voltage":{
             "time": num, 
-            "voltage": voltage
+            "value": voltage
         }, 
 
         "current":{ 
             "time": num, 
-            "current": current
+            "value": current
         },
 
         "power":{ 
             "time": num, 
-            "power": power
+            "value": power
         },
-
-        "energies": {
-            "imported": {
-                "time": num,
-                "imported": imported
-            },
-            "exported": {
-                "time": num,
-                "exported": exported
-            },
-            "net": {
-                "time": num,
-                "net": net
-            },
-            "total": {
-                "time": num,
-                "total": total
-            },
-        }
+        "imported": {
+            "time": num,
+            "value": imported
+        },
+        "exported": {
+            "time": num,
+            "value": exported
+        },
+        "net": {
+            "time": num,
+            "value": net
+        },
+        "total": {
+            "time": num,
+            "value": total
+        },
     })
 
     mqtt_connection.publish(
