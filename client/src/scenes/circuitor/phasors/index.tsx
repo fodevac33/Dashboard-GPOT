@@ -1,6 +1,7 @@
 import { Box, useMediaQuery,FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import GraphPhasors from './GraphPhasors';
 import GraphPhasorsT from './GraphPhasorsT';
+import CustomPolarChart from './test';
 import React from 'react';
 
 
@@ -82,6 +83,8 @@ const GridCircuitorFasores = () => {
 
         {tiempo === "Día" && <GraphPhasors/>}
         {tiempo === "Tiempo Real" && <GraphPhasorsT/>}
+        {tiempo === "Semana" && <CustomPolarChart/>}
+      
       
       </Box>
       </> 

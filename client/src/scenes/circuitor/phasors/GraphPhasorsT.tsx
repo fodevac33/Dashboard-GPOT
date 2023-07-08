@@ -1,8 +1,8 @@
 import DashboardBox from '@/components/DashboardBox';
 import BasicTable from '@/components/BasicTable';
-import { VictoryChart, VictoryPolarAxis,VictoryTheme, VictoryBar } from 'victory';
 import React, { useState, useEffect } from 'react';
 import socket from '@/state/socket';
+import PhasorsGraph from '@/components/PhasorsGraph';
 
 
 
@@ -11,7 +11,12 @@ type Props = {}
   
 const GraphPhasorsT = (props: Props) => {
 
-  const [dataRealTimePhasors1, setDataPhasors] = useState([]);
+  interface DataPhasor {
+    value: number;
+    time: number;  
+  }
+
+  const [dataRealTimePhasors1, setDataPhasors] = useState<DataPhasor[]>([]);;
     useEffect(() => {
       socket.on('dataRealTimePhasors', (dataPhasors) => {
         setDataPhasors(dataPhasors);
@@ -19,7 +24,7 @@ const GraphPhasorsT = (props: Props) => {
       });
     }, []); 
 
-    const [dataRealTimePhasors2, setDataPhasors2] = useState([]);
+    const [dataRealTimePhasors2, setDataPhasors2] =  useState<DataPhasor[]>([]);;
     useEffect(() => {
       socket.on('dataRealTimePhasors2', (dataPhasors2) => {
         setDataPhasors2(dataPhasors2);
@@ -27,26 +32,24 @@ const GraphPhasorsT = (props: Props) => {
       });
     }, []); 
 
+    const [dataRealTimePhasors3, setDataPhasors3] =  useState<DataPhasor[]>([]);;
+    useEffect(() => {
+      socket.on('dataRealTimePhasors3', (dataPhasors3) => {
+        setDataPhasors3(dataPhasors3);
+        console.log("dataRealTimePhasors", dataPhasors3);
+      });
+    }, []); 
 
-  const directionsKeys = dataRealTimePhasors1;
-  const valuesdirections = directionsKeys.map(String);
+    
+    const getLastValue = (array: DataPhasor[]) => {
+      if (array.length === 0) {
+        return 0; 
+      }
+      return parseFloat(array[array.length-1].value.toFixed(3))*-1;
+    }
 
-  const directions = directionsKeys.reduce((obj, key, index) => {
-    obj[key] = valuesdirections[index];
-    return obj;
-  }, {} as { [key: number]: string });
-
-  const directions2Keys = dataRealTimePhasors2;
-  const valuesdirections2 = directions2Keys.map(String);
-
-  const directions2 = directions2Keys.reduce((obj, key, index) => {
-    obj[key] = valuesdirections2[index];
-    return obj;
-  }, {} as { [key: number]: string });
-  
-  const colors = ["#FF0A0A","#4FDC04","#3498DB"];
-
-  let index = 0;
+    const angles = [0, getLastValue(dataRealTimePhasors2), getLastValue(dataRealTimePhasors2)+getLastValue(dataRealTimePhasors3)];
+    const angles2 = [20, 110, 250];    
 
   function createData(
     L1: number,
@@ -64,82 +67,19 @@ const GraphPhasorsT = (props: Props) => {
   const rowNames = ["L1", "L2", "L3"];
 
   const rows2 = [
-    createData( -119.1 , -120.4, -120.3, "V"),
+    createData( getLastValue(dataRealTimePhasors1)*-1 , getLastValue(dataRealTimePhasors2)*-1, getLastValue(dataRealTimePhasors3)*-1, "V"),
     createData( -102.6 , -163.3, -94.0, "I"),
   ];
   const rowNames2 = ["L1-L2", "L2-L3", "L3-L1"];
 
   const rows3 = [
-    createData( -26.2 , -42.8, 0.0, "")
+    createData( angles2[0], angles2[1], angles2[2], "") 
   ];
   
   return (
     <>
     <DashboardBox gridArea="a">
-    <VictoryChart
-        polar
-        animate={{ duration: 500, onLoad: { duration: 500 } }}
-        theme={VictoryTheme.material}
-        domain={{ y: [0, 2] }}
-      >
-        <VictoryPolarAxis
-          dependentAxis
-          labelPlacement="vertical"
-          style={{ axis: { stroke: "none" } }}
-          tickFormat={() => ""}
-        />
-
-        <VictoryPolarAxis
-          labelPlacement="parallel"
-          tickValues={Object.keys(directions).map(Number)}
-          tickFormat={Object.values(directions)}
-          style={{ tickLabels: { fill: "white" } }}
-        />
-
-        <VictoryPolarAxis
-          labelPlacement="parallel"
-          tickValues={Object.keys(directions2).map(Number)}
-          tickFormat={Object.values(directions2)}
-          style={{ axis: { stroke:"gray" }, tickLabels: { fill: "white" }  }}
-        />
-    
-        <VictoryBar
-          style={{
-            data: { width: 5, fill: () => {
-              const color = colors[index % colors.length];
-              index += 1;
-              return color;
-            }},
-            labels: { fontSize: 10},
-            
-          }}
-          data={directionsKeys.map((direction) => ({
-            x: direction,
-            y: 2
-          }))}
-          cornerRadius={{ topLeft: 4, topRight: 4 }}
-          labels={() => ""}
-        />
-
-        <VictoryBar
-          style={{
-            data: { width: 7, fill: () => {
-              const color = colors[index % colors.length];
-              index += 1;
-              return color;
-            }},
-            labels: { fontSize: 10 }
-          }}
-          data={directions2Keys.map((direction) => ({
-            x: direction,
-            y: 1
-          }))}
-          cornerRadius={{ topLeft: 4, topRight: 4 }}
-          labels={() => ""}
-        />
-
-
-      </VictoryChart>
+      <PhasorsGraph angles={angles} angles2={angles2}/>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
