@@ -4,9 +4,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import SpeedIcon from '@mui/icons-material/Speed';
 import HomeIcon from '@mui/icons-material/Home';
-import ElectricMeterIcon from '@mui/icons-material/ElectricMeter';
-
-
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import MultilineChartIcon from '@mui/icons-material/MultilineChart';
+import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import TimelineIcon from '@mui/icons-material/Timeline';
 
 export interface DropDownItem {
   title?: string;
@@ -29,7 +30,7 @@ export const DropDownItem: DropDownItem[] = [
     iconClosed: <ArrowDropDownIcon />,
     iconOpened: <ArrowDropUpIcon />,
     path: '#',
-    icon: <ElectricMeterIcon />,
+    icon: <TimelineIcon />,
 
 
     subnav: [
@@ -41,7 +42,7 @@ export const DropDownItem: DropDownItem[] = [
       {
         title: 'Energías',
         path: '/acu/energies',
-        icon: <OfflineBoltIcon />  
+        icon: <ElectricBoltIcon />  
       },
     ],
 
@@ -51,13 +52,13 @@ export const DropDownItem: DropDownItem[] = [
     path: '#',
     iconClosed: <ArrowDropDownIcon />,
     iconOpened: <ArrowDropUpIcon />,
-    icon: <SpeedIcon />,
+    icon: <MultilineChartIcon/>,
     
     subnav:[
       {
         title: "VCP",
         path: '/circuitor/vcp',
-        icon: <SpeedIcon/>
+        icon: <OfflineBoltIcon/>
       },
       {
         title: "Fasores",
@@ -67,7 +68,7 @@ export const DropDownItem: DropDownItem[] = [
       {
         title: "Potencias",
         path: '/circuitor/power',
-        icon: <SpeedIcon/>
+        icon: <LocalParkingIcon/>
       }
     ]
   },

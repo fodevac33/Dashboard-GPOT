@@ -12,16 +12,16 @@ const Navbar = (props: Props) => {
     const {palette} = useTheme();
 
   return( 
-    <FlexBetween mb="0rem" p="0.5rem 0rem" color={palette.grey[300]}>
+    <FlexBetween flexDirection="column"  mb="0rem" p="0.5rem 0rem" color={palette.grey[300]}>
         {/* Left Side */}
-                <Box sx={{ display: "inline-flex", alignItems: "center" }}>
+                <Box sx={{ display: "flex", alignItems: "center", alignSelf: "flex-start" }}>
                     <SolarPowerIcon sx={{ fontSize: "30px"}}/>
                     <Typography variant="h4" sx={{ fontSize: "30px", marginLeft: "10px" }}>
                         GPOT
                     </Typography>
                 </Box>
 
-            <FlexBetween p="0rem 1rem 0rem 1rem" >
+            <FlexBetween flexDirection="column"  p="0rem 1rem 0rem 1rem" >
                     <Box sx={{position: "relative", left: 0}}>
                         {DropDownItem.map((item, index) => {
                             return <SubMenu item={item} key={index}/>

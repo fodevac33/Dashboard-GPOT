@@ -4,6 +4,9 @@ import socket from '@/state/socket';
 import { useState, useEffect } from 'react';
 import BoxHeader from '@/components/BoxHeader';
 import CustomLineChart from '@/components/CustomLineChart';
+import PhasorsGraph from '@/components/PhasorsGraph';
+import {Typography, Box} from "@mui/material";
+
 
 
 type Props = {}
@@ -35,6 +38,9 @@ const GraphsDashboard = (props: Props) => {
       console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
     });
   }, []);
+
+  const angles = [0, 119.86, 240.36];
+  const angles2 = [26.2, 161.86, 240.36];
   
 
 
@@ -42,45 +48,74 @@ const GraphsDashboard = (props: Props) => {
     <>
     <DashboardBox gridArea="a">
       <BoxHeader
+              title="Voltaje Circuitor"
+            />
+      <Box sx={{display:"flex",
+                justifyContent:"flex-end",
+                alignItems: "center",
+                height:"70%"
+                }}>
+        <Typography m="1rem" color="#D93D04" fontSize="50px" fontWeight= "bold">
+              120 V
+        </Typography>
+      </Box>
+    </DashboardBox>
+    <DashboardBox gridArea="b">
+    <BoxHeader
+            title="Corriente Circuitor"
+          />
+        <Box sx={{display:"flex",
+                justifyContent:"flex-end",
+                alignItems: "center",
+                height:"70%"
+                }}>
+        <Typography m="1rem" color="#4FDC04" fontSize="50px" fontWeight= "bold">
+              10 A
+        </Typography>
+      </Box>
+    </DashboardBox>
+    <DashboardBox gridArea="c">
+    <BoxHeader
+            title="Potencia Activa Circuitor"
+          />
+        <Box sx={{display:"flex",
+                justifyContent:"flex-end",
+                alignItems: "center",
+                height:"70%"
+                }}>
+          <Typography m="1rem" color="#3498DB" fontSize="50px" fontWeight= "bold">
+                1 KW
+          </Typography>
+        </Box>
+    </DashboardBox>
+    <DashboardBox gridArea="d">
+      <BoxHeader
             title="Voltaje ACU"
-            subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Volts"
           />
     <CustomLineChart 
           chartData={chartData}
           xAsisDatakey='time'
           yAsisDatakey='voltage'
-          stroke = '#8884d8'/>
+          stroke = '#D93D04'/>
     </DashboardBox>
 
-    <DashboardBox gridArea="b">
-    <BoxHeader
-            title="Corriente ACU Tiempo Real"
-            sideText="Amps"
-          />
-    <CustomLineChart 
-          chartData={dataRealTimeCurrent}
-          xAsisDatakey='time'
-          yAsisDatakey='current'
-          stroke = '#8884d8'
-          animation = {false}/>
-          
-    </DashboardBox>
+    <DashboardBox gridArea="e">
+      <PhasorsGraph angles={angles} angles2={angles2}/>
+    </DashboardBox> 
 
-    
-    <DashboardBox gridArea="c">
+    <DashboardBox gridArea="f">
     <BoxHeader
-            title="Voltaje ACU Tiempo Real"
+            title="Voltaje ACU"
             sideText="Volts"
           />
     <CustomLineChart 
-          chartData={dataRealTimeVoltage}
+          chartData={chartData}
           xAsisDatakey='time'
           yAsisDatakey='voltage'
-          stroke = '#8884d8'
-          animation = {false}/>
-          
+          stroke = '#98D936'/>
     </DashboardBox>
+    
     </>
   )
 } 

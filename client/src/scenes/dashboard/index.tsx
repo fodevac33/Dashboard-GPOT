@@ -2,30 +2,45 @@ import { Box, useMediaQuery} from '@mui/material'
 import GraphsDashboard from './GraphsDashboard';
 
 const gridTemplateLargeScreens = `
-  "a b"
-  "a b"
-  "a b"
-  "a b"
-  "c c"
-  "c c"
-  "c c"
-  "c c"
+  "a a b b c c"
+  "d d d e e e"
+  "d d d e e e"
+  "f f f e e e"
+  "f f f e e e"
 `;
 
 const gridTemplateSmallScreens= `
   "a"
   "a"
-  "a"
-  "a"
-  "b"
-  "b"
-  "b"
   "b"
   "b"
   "c"
   "c"
-  "c"
-  "c"
+  "d"
+  "d"
+  "d"
+  "d"
+  "d"
+  "d"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "e"
+  "f"
+  "f"
+  "f"
+  "f"
+  "f"
+  "f"
+
 `;
 
 const Dashboard = () => {
@@ -39,8 +54,8 @@ const Dashboard = () => {
         p= "1rem"
         sx = {
           isAboveMediumScreens ?{
-          gridTemplateColumns: "repeat(2, minmax(370px, 1fr))",
-          gridTemplateRows: "repeat(10, minmax(60px, 1fr))",
+          gridTemplateColumns: "repeat(6, minmax(150px, 1fr))",
+          gridTemplateRows: "repeat(5, minmax(60px, 1fr))",
           gridTemplateAreas: gridTemplateLargeScreens,
           } : {
             gridAutoColumns: "1fr",

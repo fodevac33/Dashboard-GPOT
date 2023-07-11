@@ -41,8 +41,8 @@ export const tokens = {
     500: "#8884d8",
   },
   background: {
-    light: "#2d2d34",
-    main: "#1f2026",
+    light: "#1e1f21",
+    main: "#16171b",
   },
 };
 
