@@ -1,70 +1,31 @@
-import React from 'react'
-import DashboardBox from '@/components/DashboardBox';
-import BoxHeader from '@/components/BoxHeader';
+import React, {useMemo } from 'react'
 import { useGetAcuVoltagesQuery } from '@/state/api';
-import CustomLineChart from '@/components/CustomLineChart';
-import {useTheme} from "@mui/material";
+import GraphVCPComponent from '@/components/GraphVCPComponent';
 
 
-type Props = {}
+type Props = {
+}
 
   
 const GraphsVCP = (props: Props) => {
 
-  const {palette} = useTheme();
-
   const {data} = useGetAcuVoltagesQuery();
   console.log('data:', data);
-  const chartData = data?.map(item => ({
-    time: item.time,
-    voltage: item.voltage,
-  }));
-
+  const chartData = useMemo(()=>{
+    if(data){
+        return data?.map(item => ({
+            time: item.time,
+            voltage: item.voltage,
+        }));
+    }
+    return null;
+  }, [data]);
   return (
     <>
-      <DashboardBox gridArea="a">
-      <BoxHeader
-            title="Voltaje ACU"
-            subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
-            sideText="Volts"
-            sideTextcolor= {palette.primary[100]}
-          />
-          <CustomLineChart 
-        chartData={chartData}
-        xAsisDatakey='time'
-        yAsisDatakey='voltage'
-        stroke={palette.primary[100]}/>
-    </DashboardBox>
-
-    <DashboardBox gridArea="b">
-      <BoxHeader
-            title="Corriente ACU"
-            subtitle="Este grafica muestra los ultimos valores de corriente registrados por el ACU"
-            sideText="Amps"
-            sideTextcolor= {palette.primary[200]}
-          />
-      <CustomLineChart 
-        chartData={chartData}
-        xAsisDatakey='time'
-        yAsisDatakey='voltage'
-        stroke={palette.primary[200]}/>
-      </DashboardBox>
-
-    <DashboardBox gridArea="c">
-      <BoxHeader
-            title="Potencia ACU"
-            subtitle="Este grafica muestra los ultimos valores de potencia registrados por el ACU"
-            sideText="Watts"
-            sideTextcolor= {palette.primary[300]}
-          />
-        <CustomLineChart 
-        chartData={chartData}
-        xAsisDatakey='time'
-        yAsisDatakey='voltage'
-        stroke={palette.primary[300]}/>
-      </DashboardBox>
-
-  </>
+      <GraphVCPComponent dataVoltage={chartData}
+      dataCurrent={chartData}
+      dataPower={chartData}/>
+    </>
   )
 }
 

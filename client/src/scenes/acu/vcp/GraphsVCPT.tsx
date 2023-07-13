@@ -1,9 +1,6 @@
-import DashboardBox from '@/components/DashboardBox';
-import BoxHeader from '@/components/BoxHeader';
 import React, { useState, useEffect } from 'react';
 import socket from '@/state/socket';
-import CustomLineChart from '@/components/CustomLineChart';
-import {useTheme} from "@mui/material";
+import GraphVCPComponent from '@/components/GraphVCPComponent';
 
 
 type Props = {}
@@ -14,7 +11,6 @@ const GraphsVCPT = (props: Props) => {
 
 
     const [dataRealTimeVoltage, setDataVoltage] = useState([]);
-    const {palette} = useTheme();
 
     useEffect(() => {
       socket.on('dataRealTimeVoltage', (dataVoltage) => {
@@ -45,51 +41,11 @@ const GraphsVCPT = (props: Props) => {
 
   return (
     <>
-      <DashboardBox gridArea="a">
-      <BoxHeader
-            title="Voltaje ACU en Tiempo Real"
-            subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
-            sideText="Volts"
-            sideTextcolor= {palette.primary[100]}
-          />
-      <CustomLineChart 
-          chartData={dataRealTimeVoltage}
-          xAsisDatakey='time'
-          yAsisDatakey='value'
-          stroke = {palette.primary[100]}
-          animation = {false}/>
-    </DashboardBox>
-
-    <DashboardBox gridArea="b">
-      <BoxHeader
-            title="Corriente ACU en Tiempo Real"
-            subtitle="Este grafica muestra los ultimos valores de corriente registrados por el ACU"
-            sideText="Amps"
-            sideTextcolor= {palette.primary[200]}
-          />
-      <CustomLineChart 
-          chartData={dataRealTimeCurrent}
-          xAsisDatakey='time'
-          yAsisDatakey='value'
-          stroke = {palette.primary[200]}
-          animation = {false}/>
-      </DashboardBox>
-
-    <DashboardBox gridArea="c">
-      <BoxHeader
-            title="Potencia ACU en Tiempo Real"
-            subtitle="Este grafica muestra los ultimos valores de potencia registrados por el ACU"
-            sideText="Watts"
-            sideTextcolor= {palette.primary[300]}
-          />
-      <CustomLineChart 
-          chartData={dataRealTimePower}
-          xAsisDatakey='time'
-          yAsisDatakey='value'
-          stroke = {palette.primary[300]}
-          animation = {false}/>
-      </DashboardBox>
-
+    <GraphVCPComponent dataVoltage={dataRealTimeVoltage}
+    dataCurrent={dataRealTimeCurrent}
+    dataPower={dataRealTimePower}
+    titleTime='en Tiempo Real'
+    />
   </>
   )
 }
