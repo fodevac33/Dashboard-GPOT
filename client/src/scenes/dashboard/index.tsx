@@ -1,5 +1,6 @@
-import { Box, useMediaQuery} from '@mui/material'
+import {useMediaQuery} from '@mui/material'
 import GraphsDashboard from './GraphsDashboard';
+import BoxTemplateGrid from '@/components/BoxTemplateGrid';
 
 const gridTemplateLargeScreens = `
   "a a b b c c"
@@ -46,28 +47,13 @@ const gridTemplateSmallScreens= `
 const Dashboard = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
     return (
-      <Box
-        width="100%"
-        height="100%"
-        display="grid"
-        gap="1.5rem"
-        p= "1rem"
-        sx = {
-          isAboveMediumScreens ?{
-          gridTemplateColumns: "repeat(6, minmax(150px, 1fr))",
-          gridTemplateRows: "repeat(5, minmax(60px, 1fr))",
-          gridTemplateAreas: gridTemplateLargeScreens,
-          } : {
-            gridAutoColumns: "1fr",
-            gridAutoRows: "80px",
-            gridTemplateAreas: gridTemplateSmallScreens,
-            maxWidth: "90px",
-          }
-        }
-      >
-        <GraphsDashboard/>
-      
-      </Box>
+      <BoxTemplateGrid isAboveMediumScreens={isAboveMediumScreens} 
+      gridTemplateLargeScreens={gridTemplateLargeScreens} 
+      gridTemplateSmallScreens={gridTemplateSmallScreens}
+      columns={6} rows={5}
+      sizeColumns='150px' sizeRows='60px'>
+        <GraphsDashboard/>  
+      </BoxTemplateGrid>
     )
 }
 

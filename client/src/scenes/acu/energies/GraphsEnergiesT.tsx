@@ -3,13 +3,15 @@ import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 import socket from '@/state/socket';
 import React, { useState, useEffect } from 'react';
+import {useTheme} from "@mui/material";
 
 
 
 type Props = {}
 
 const GraphsEnergiesT = (props: Props) => {
-
+    const {palette} = useTheme();
+    
     const [dataRealTimeImportedEnergy, setDataImportedEnergy] = useState([]);
 
     useEffect(() => {
@@ -53,13 +55,13 @@ const GraphsEnergiesT = (props: Props) => {
             title="Energía Importada en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#98D936'
+            sideTextcolor={palette.secondary[200]}
           />
       <CustomLineChart 
         chartData={dataRealTimeImportedEnergy}
         xAsisDatakey='time'
         yAsisDatakey='value'
-        stroke = '#98D936'
+        stroke = {palette.secondary[200]}
         animation = {false}/>
         
     </DashboardBox>
@@ -69,13 +71,13 @@ const GraphsEnergiesT = (props: Props) => {
             title="Energía Exportada en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#4ABF2A'
+            sideTextcolor={palette.secondary[300]}
           />
       <CustomLineChart 
           chartData={dataRealTimeExportedEnergy}
           xAsisDatakey='time'
           yAsisDatakey='value'
-          stroke = '#4ABF2A'
+          stroke = {palette.secondary[300]}
           animation = {false}/>
          
     </DashboardBox>
@@ -85,13 +87,13 @@ const GraphsEnergiesT = (props: Props) => {
             title="Energía Neta en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#D7F205'
+            sideTextcolor={palette.secondary[400]}
           />
       <CustomLineChart 
           chartData={dataRealTimeNetEnergy}
           xAsisDatakey='time'
           yAsisDatakey='value'
-          stroke = '#D7F205'
+          stroke = {palette.secondary[400]}
           animation = {false}/>
            
       </DashboardBox>
@@ -101,13 +103,13 @@ const GraphsEnergiesT = (props: Props) => {
             title="Energía Total en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#84D98A'
+            sideTextcolor={palette.secondary[500]}
           />
       <CustomLineChart 
           chartData={dataRealTimeTotalEnergy}
           xAsisDatakey='time'
           yAsisDatakey='value'
-          stroke = '#84D98A'
+          stroke = {palette.secondary[500]}
           animation = {false}/>
            
       

@@ -3,12 +3,14 @@ import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 import { useGetAcuVoltagesQuery } from '@/state/api';
 import CustomLineChart from '@/components/CustomLineChart';
+import {useTheme} from "@mui/material";
 
 
 type Props = {}
   
 const GraphsEnergies = (props: Props) => {
 
+  const {palette} = useTheme();
   const {data} = useGetAcuVoltagesQuery();
   console.log('data:', data);
   const chartData = data?.map(item => ({
@@ -23,13 +25,13 @@ const GraphsEnergies = (props: Props) => {
             title="Energía Importada"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#98D936'
+            sideTextcolor={palette.secondary[200]}
           />
       <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke = '#98D936'/>
+        stroke = {palette.secondary[200]}/>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
@@ -37,13 +39,13 @@ const GraphsEnergies = (props: Props) => {
             title="Energía Exportada"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#4ABF2A'
+            sideTextcolor={palette.secondary[300]}
           />
       <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke= '#4ABF2A'/>
+        stroke={palette.secondary[300]}/>
       </DashboardBox>
 
     <DashboardBox gridArea="c">
@@ -51,13 +53,13 @@ const GraphsEnergies = (props: Props) => {
             title="Energía Neta"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#D7F205'
+            sideTextcolor={palette.secondary[400]}
           />
       <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke='#D7F205'/>
+        stroke={palette.secondary[400]}/>
       </DashboardBox>
 
       <DashboardBox gridArea="d">
@@ -65,13 +67,13 @@ const GraphsEnergies = (props: Props) => {
             title="Energía Total"
             subtitle="Este grafica muestra los ultimos valores de voltaje registrados por el ACU"
             sideText="Watts"
-            sideTextcolor='#84D98A'
+            sideTextcolor={palette.secondary[500]}
           />
       <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke='#84D98A'/>
+        stroke={palette.secondary[500]}/>
       </DashboardBox>
 
   </>

@@ -13,13 +13,6 @@ type Props = {}
   
 const GraphPhasors = (props: Props) => {
 
-  
-  const center = 500 / 2;
-  const radius = center - 20;
-  const axisLength = radius-1;
-  const axisLength2 = radius/2+13;
-  const numCircles = 4;
-
   const [angles, setAngles] = useState([0, 90, 220]);
   const [angles2, setAngles2] = useState([20, 110, 250]);
 
@@ -74,13 +67,13 @@ const GraphPhasors = (props: Props) => {
 
     <DashboardBox gridArea="b" >
           
-      <div style={{ margin: '9px', marginBottom: '10px'}}>
+    <div style={{ margin: '9px', marginBottom: '10px', overflow: 'auto' }}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '10px' }}>
+      <div style={{ margin: '9px', marginBottom: '10px', overflow: 'auto' }}>
       <BasicTable rows={rows2} rowNames={rowNames2} color={false} VI={true} title={"Ángulo entre fases"}/>
       </div>
-      <div style={{ margin: '9px', marginBottom: '10px' }}>
+      <div style={{ margin: '9px', marginBottom: '10px', overflow: 'auto' }}>
       <BasicTable rows={rows3} rowNames={rowNames} color={true} VI={false}  title={"Ángulo V-I"}/>
       </div>
     </DashboardBox>

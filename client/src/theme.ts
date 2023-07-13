@@ -13,32 +13,32 @@ export const tokens = {
     900: "#242427",
   },
   primary: {
-    // light green
-    100: "#ffe2cc",
-    200: "#ffc599",
-    300: "#ffa866",
-    400: "#ff8b33",
-    500: "#ff6e00",
-    600: "#cc5800",
-    700: "#994200",
-    800: "#662c00",
-    900: "#331600"
+    // orange
+    100: "#d93d04",
+    200: "#f27405",
+    300: "#f29f05",
+    400: "#98d936",
+    500: "#FF0A0A"
   },
   secondary: {
-    // yellow
-    100: "#fcf0dd",
-    200: "#fae1bb",
-    300: "#f7d299",
-    400: "#f5c377",
-    500: "#f2b455",
-    600: "#c29044",
-    700: "#916c33",
-    800: "#614822",
-    900: "#302411",
+    // green
+    100: "#4fdc04",
+    200: "#98d936",
+    300: "#4abf2a",
+    400: "#d7f205",
+    500: "#84d98a",
   },
   tertiary: {
-    // purple
-    500: "#8884d8",
+    // blue
+    100: "#3498db",
+    200: "#aed6f1",
+    300: "#85c1e9",
+    400: "#5dade2",
+    500: "#3498db",
+    600: "#2a7aaf",
+    700: "#1f5b83",
+    800: "#153d58",
+    900: "#0a1e2c",
   },
   background: {
     light: "#1e1f21",
@@ -51,8 +51,8 @@ export const themeSettings = {
   palette: {
     primary: {
       ...tokens.primary,
-      main: tokens.primary[500],
-      light: tokens.primary[400],
+      main: tokens.primary[300],
+      light: tokens.primary[200],
     },
     secondary: {
       ...tokens.secondary,

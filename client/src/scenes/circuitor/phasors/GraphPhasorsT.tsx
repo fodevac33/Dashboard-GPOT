@@ -82,8 +82,7 @@ const GraphPhasorsT = (props: Props) => {
       <PhasorsGraph angles={angles} angles2={angles2}/>
     </DashboardBox>
 
-    <DashboardBox gridArea="b">
-          
+    <DashboardBox gridArea="b">     
       <div style={{ margin: '9px', marginBottom: '10px'}}>
       <BasicTable rows={rows} rowNames={rowNames} color={true} VI={true}/>
       </div>

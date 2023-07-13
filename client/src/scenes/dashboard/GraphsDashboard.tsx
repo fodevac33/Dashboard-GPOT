@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import BoxHeader from '@/components/BoxHeader';
 import CustomLineChart from '@/components/CustomLineChart';
 import PhasorsGraph from '@/components/PhasorsGraph';
-import {Typography, Box} from "@mui/material";
+import {Typography, Box, useTheme} from "@mui/material";
 
 
 
@@ -14,6 +14,9 @@ type Props = {}
 
 
 const GraphsDashboard = (props: Props) => {
+
+  const {palette} = useTheme();
+  
   const {data} = useGetAcuVoltagesQuery();
   console.log('data:', data);
   const chartData = data?.map(item => ({
@@ -21,23 +24,6 @@ const GraphsDashboard = (props: Props) => {
     voltage: item.voltage,
   }));
 
-  const [dataRealTimeVoltage, setDataVoltage] = useState([]);
-
-  useEffect(() => {
-    socket.on('dataRealTimeVoltage', (dataRealTimeVoltage) => {
-      setDataVoltage(dataRealTimeVoltage);
-      console.log("dataRealTimeVoltage:", dataRealTimeVoltage);
-    });
-  }, []);
-
-  const [dataRealTimeCurrent, setDataCurrent] = useState([]);
-
-  useEffect(() => {
-    socket.on('dataRealTimeCurrent', (dataRealTimeCurrent) => {
-      setDataCurrent(dataRealTimeCurrent);
-      console.log("dataRealTimeCurrent:", dataRealTimeCurrent);
-    });
-  }, []);
 
   const angles = [0, 119.86, 240.36];
   const angles2 = [26.2, 161.86, 240.36];
@@ -53,9 +39,9 @@ const GraphsDashboard = (props: Props) => {
       <Box sx={{display:"flex",
                 justifyContent:"flex-end",
                 alignItems: "center",
-                height:"70%"
+                height:"6vh"
                 }}>
-        <Typography m="1rem" color="#D93D04" fontSize="50px" fontWeight= "bold">
+        <Typography m="1rem" color={palette.primary[100]} fontSize="50px" fontWeight= "bold">
               120 V
         </Typography>
       </Box>
@@ -67,9 +53,9 @@ const GraphsDashboard = (props: Props) => {
         <Box sx={{display:"flex",
                 justifyContent:"flex-end",
                 alignItems: "center",
-                height:"70%"
+                height:"6vh"
                 }}>
-        <Typography m="1rem" color="#4FDC04" fontSize="50px" fontWeight= "bold">
+        <Typography m="1rem" color={palette.secondary[100]} fontSize="50px" fontWeight= "bold">
               10 A
         </Typography>
       </Box>
@@ -81,9 +67,9 @@ const GraphsDashboard = (props: Props) => {
         <Box sx={{display:"flex",
                 justifyContent:"flex-end",
                 alignItems: "center",
-                height:"70%"
+                height:"6vh"
                 }}>
-          <Typography m="1rem" color="#3498DB" fontSize="50px" fontWeight= "bold">
+          <Typography m="1rem" color={palette.tertiary[100]} fontSize="50px" fontWeight= "bold">
                 1 KW
           </Typography>
         </Box>
@@ -97,7 +83,7 @@ const GraphsDashboard = (props: Props) => {
           chartData={chartData}
           xAsisDatakey='time'
           yAsisDatakey='voltage'
-          stroke = '#D93D04'/>
+          stroke = {palette.primary[100]}/>
     </DashboardBox>
 
     <DashboardBox gridArea="e">
@@ -106,14 +92,14 @@ const GraphsDashboard = (props: Props) => {
 
     <DashboardBox gridArea="f">
     <BoxHeader
-            title="Voltaje ACU"
-            sideText="Volts"
+            title="Corriente ACU"
+            sideText="Amps"
           />
     <CustomLineChart 
           chartData={chartData}
           xAsisDatakey='time'
           yAsisDatakey='voltage'
-          stroke = '#98D936'/>
+          stroke = {palette.secondary[100]}/>
     </DashboardBox>
     
     </>

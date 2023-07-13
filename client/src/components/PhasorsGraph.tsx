@@ -1,4 +1,5 @@
 import React from 'react'
+import {useTheme} from "@mui/material";
 
 type Props = {
     angles: number[];
@@ -6,14 +7,14 @@ type Props = {
 }
 
 const PhasorsGraph = ({angles, angles2}: Props) => {
-
+  const {palette} = useTheme();
   const center = 500 / 2;
   const radius = center - 20;
   const axisLength = radius-1;
   const axisLength2 = radius/2+13;
   const numCircles = 4;
 
-  const colors = ["#FF0A0A","#4FDC04","#3498DB"];
+  const colors = [palette.primary[500],palette.secondary[100],palette.tertiary[100]];
 
   
   return (

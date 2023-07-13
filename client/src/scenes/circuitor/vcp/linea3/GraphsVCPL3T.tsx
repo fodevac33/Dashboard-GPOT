@@ -3,6 +3,7 @@ import BoxHeader from '@/components/BoxHeader';
 import CustomLineChart from '@/components/CustomLineChart';
 import React, { useState, useEffect } from 'react';
 import socket from '@/state/socket';
+import {useTheme} from "@mui/material";
 
 
 
@@ -10,7 +11,7 @@ type Props = {}
 
   
 const GraphsVCPL3T = (props: Props) => {
-
+    const {palette} = useTheme();
     const [dataRealTimeVoltageL3, setDataVoltage] = useState([]);
 
     useEffect(() => {
@@ -45,13 +46,13 @@ const GraphsVCPL3T = (props: Props) => {
             title="Voltaje Circuitor - Linea 3 en Tiempo Real"
             subtitle="Este grafica muestra los valores de voltaje registrados por el Circuitor en la linea 3"
             sideText="Volts"
-            sideTextcolor= '#D93D04'
+            sideTextcolor= {palette.primary[100]}
           />
           <CustomLineChart 
         chartData={dataRealTimeVoltageL3}
         xAsisDatakey='time'
         yAsisDatakey='value'
-        stroke='#D93D04'/>
+        stroke={palette.primary[100]}/>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
@@ -59,13 +60,13 @@ const GraphsVCPL3T = (props: Props) => {
             title="Corriente Circuitor - Linea 3 en Tiempo Real"
             subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor en la linea 3"
             sideText="Amps"
-            sideTextcolor= '#F27405'
+            sideTextcolor= {palette.primary[200]}
           />
       <CustomLineChart 
         chartData={dataRealTimeCurrentL3}
         xAsisDatakey='time'
         yAsisDatakey='value'
-        stroke='#F27405'/>
+        stroke={palette.primary[200]}/>
       </DashboardBox>
 
     <DashboardBox gridArea="c">
@@ -73,13 +74,13 @@ const GraphsVCPL3T = (props: Props) => {
             title="Potencia Activa - Linea 3 en Tiempo Real"
             subtitle="Este grafica muestra los ultimos valores de potencia activa registrados por el Circuitor en la linea 3"
             sideText="kWatts"
-            sideTextcolor= '#F29F05'
+            sideTextcolor= {palette.primary[300]}
           />
         <CustomLineChart 
         chartData={dataRealTimeActivePowerL3}
         xAsisDatakey='time'
         yAsisDatakey='value'
-        stroke='#F29F05'/>
+        stroke={palette.primary[300]}/>
       </DashboardBox>
 
   </>

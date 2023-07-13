@@ -1,12 +1,5 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 
 
@@ -22,6 +15,7 @@ type Props = {
 
 const BasicTable = ({rows, rowNames, color, VI, title}: Props) => {
   return (
+    // TODO: Make the table responsive
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 320,'tr td, tr th': { border: 2}, backgroundColor: "#1e1f21"}} aria-label="simple table">
         <TableHead >

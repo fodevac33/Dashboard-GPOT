@@ -3,6 +3,7 @@ import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 import { useGetAcuVoltagesQuery } from '@/state/api';
 import CustomLineChart from '@/components/CustomLineChart';
+import {useTheme} from "@mui/material";
 
 
 type Props = {}
@@ -10,7 +11,7 @@ type Props = {}
   
 const GraphsPowerL1 = (props: Props) => {
 
-
+  const {palette} = useTheme();
   const {data} = useGetAcuVoltagesQuery();
   console.log('data:', data);
   const chartData = data?.map(item => ({
@@ -25,13 +26,13 @@ const GraphsPowerL1 = (props: Props) => {
             title="Potencia Reactiva Inductiva - Linea 1"
             subtitle="Este grafica muestra los valores de potencia reactiva inductiva registrados por el Circuitor"
             sideText="kvar"
-            sideTextcolor= '#98D936'
+            sideTextcolor= {palette.secondary[200]}
           />
           <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke='#98D936'/>
+        stroke={palette.secondary[200]}/>
     </DashboardBox>
 
     <DashboardBox gridArea="b">
@@ -39,13 +40,13 @@ const GraphsPowerL1 = (props: Props) => {
             title="Potencia Reactiva Capacitiva - Linea 1"
             subtitle="Este grafica muestra los valores de corriente registrados por el Circuitor"
             sideText="Amps"
-            sideTextcolor= '#4ABF2A'
+            sideTextcolor= {palette.secondary[300]}
           />
       <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke='#4ABF2A'/>
+        stroke={palette.secondary[300]}/>
       </DashboardBox>
 
     <DashboardBox gridArea="c">
@@ -53,13 +54,13 @@ const GraphsPowerL1 = (props: Props) => {
             title="Potencia Aparente - Linea 1"
             subtitle="Este grafica muestra los ultimos valores de potencia activa registrados por el Circuitor"
             sideText="kVA"
-            sideTextcolor= '#D7F205'
+            sideTextcolor= {palette.secondary[400]}
           />
         <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke='#D7F205'/>
+        stroke={palette.secondary[400]}/>
     </DashboardBox>
 
     <DashboardBox gridArea="d">
@@ -67,13 +68,13 @@ const GraphsPowerL1 = (props: Props) => {
             title="Factor de potencia - Linea 1"
             subtitle="Este grafica muestra los ultimos valores de factor de potencia registrados por el Circuitor"
             sideText="PF"
-            sideTextcolor= '#84D98A'
+            sideTextcolor= {palette.secondary[500]}
           />
         <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
         yAsisDatakey='voltage'
-        stroke='#84D98A'/>
+        stroke={palette.secondary[500]}/>
     </DashboardBox>
 
   </>
