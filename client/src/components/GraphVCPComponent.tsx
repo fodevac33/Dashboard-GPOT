@@ -5,7 +5,6 @@ import DashboardBox from '@/components/DashboardBox';
 import BoxHeader from '@/components/BoxHeader';
 
 type Props = {
-  // TODO: Replace in database voltage to value
     dataVoltage: {
         time: number;
         value: number;
@@ -58,7 +57,7 @@ const GraphVCPComponent = ({dataVoltage, dataCurrent, dataPower,titleTime, devic
   
       <DashboardBox gridArea="c">
         <BoxHeader
-              title={`Potencia ${device}${titleTime ? " " + titleTime : ""}`}
+              title={`Potencia ${device === "Circuitor" ? "Activa " : ""}${device}${titleTime ? " " + titleTime : ""}`}
               subtitle={`Este grafica muestra los ultimos valores de potencia registrados por el ${device}`}
               sideText="Watts"
               sideTextcolor= {palette.primary[300]}
