@@ -16,7 +16,7 @@ const GraphsVCPL1 = (props: Props) => {
   console.log('data:', data);
   const chartData = data?.map(item => ({
     time: item.time,
-    voltage: item.voltage,
+    value: item.value,
   }));
 
   return (
@@ -31,7 +31,7 @@ const GraphsVCPL1 = (props: Props) => {
           <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
-        yAsisDatakey='voltage'
+        yAsisDatakey='value'
         stroke={palette.primary[100]}/>
     </DashboardBox>
 
@@ -45,7 +45,7 @@ const GraphsVCPL1 = (props: Props) => {
       <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
-        yAsisDatakey='voltage'
+        yAsisDatakey='value'
         stroke={palette.primary[200]}/>
       </DashboardBox>
 
@@ -59,7 +59,7 @@ const GraphsVCPL1 = (props: Props) => {
         <CustomLineChart 
         chartData={chartData}
         xAsisDatakey='time'
-        yAsisDatakey='voltage'
+        yAsisDatakey='value'
         stroke={palette.primary[300]}/>
       </DashboardBox>
 

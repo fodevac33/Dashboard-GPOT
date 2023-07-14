@@ -8,7 +8,7 @@ const voltageSchema = new Schema(
       type: Number,
       required: true,
     },
-    voltage: {
+    value: {
       type: Number,
       required: true,
     },

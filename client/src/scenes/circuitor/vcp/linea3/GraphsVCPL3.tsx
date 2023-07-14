@@ -14,7 +14,7 @@ const GraphsVCPL3 = (props: Props) => {
     if(data){
         return data?.map(item => ({
             time: item.time,
-            voltage: item.voltage,
+            value: item.value,
         }));
     }
     return null;

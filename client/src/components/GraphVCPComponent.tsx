@@ -8,15 +8,15 @@ type Props = {
   // TODO: Replace in database voltage to value
     dataVoltage: {
         time: number;
-        voltage: number;
+        value: number;
     }[]| null,
     dataCurrent:{
       time: number;
-      voltage: number;
+      value: number;
     }[]| null,
     dataPower:{
       time: number;
-      voltage: number;
+      value: number;
     }[]| null,
     device?: string,
     titleTime?: string,
@@ -38,7 +38,7 @@ const GraphVCPComponent = ({dataVoltage, dataCurrent, dataPower,titleTime, devic
             <CustomLineChart 
           chartData={dataVoltage}
           xAsisDatakey='time'
-          yAsisDatakey='voltage'
+          yAsisDatakey='value'
           stroke={palette.primary[100]}/>
       </DashboardBox>
   
@@ -52,7 +52,7 @@ const GraphVCPComponent = ({dataVoltage, dataCurrent, dataPower,titleTime, devic
         <CustomLineChart 
           chartData={dataCurrent}
           xAsisDatakey='time'
-          yAsisDatakey='voltage'
+          yAsisDatakey='value'
           stroke={palette.primary[200]}/>
         </DashboardBox>
   
@@ -66,7 +66,7 @@ const GraphVCPComponent = ({dataVoltage, dataCurrent, dataPower,titleTime, devic
           <CustomLineChart 
           chartData={dataPower}
           xAsisDatakey='time'
-          yAsisDatakey='voltage'
+          yAsisDatakey='value'
           stroke={palette.primary[300]}/>
         </DashboardBox>
   
