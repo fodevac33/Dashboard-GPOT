@@ -46,5 +46,5 @@ io.on("connection", () => {
 });
 
 circutorSocketController(io);
-// acuSocketController(io);
+acuSocketController(io);
 

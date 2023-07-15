@@ -18,7 +18,7 @@ let AcuIotData: IotAcuRealtimeArrays = {
 function acuSocketController(io: Server) {
 
   acu.on("connect", function () {
-    console.log("Connected to AWS IoT");
+    console.log("Acu connected to AWS IoT");
     acu.subscribe(Topics.DC_DATA);
   });
 
@@ -28,7 +28,7 @@ function acuSocketController(io: Server) {
 
       const dataRealTime= JSON.parse(payload.toString()) as AcuData;
 
-      preventArrayDataOverflow(300, AcuIotData);
+      preventArrayDataOverflow(100, AcuIotData);
 
       appendAcuDataToRealTimeArray(AcuIotData, dataRealTime);
 
